@@ -2,7 +2,7 @@
     text-align: center;
   }
 
-  .App-header {
+.App-header-menu {
     background-color: #282c34;
     min-height: auto;
     display: flex;
@@ -13,3 +13,41 @@
     color: white;
   }
   
+  .livros-container {
+    width: 100%; /* Defina o tamanho do contêiner */
+    overflow-x: scroll; /* Adiciona rolagem horizontal */
+    cursor: pointer;
+}
+
+.linha-livros {
+    display: flex; /* Exibe os livros em linha */
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    gap: 75px;
+    list-style-type: none; /* Remove os marcadores de lista */
+}
+
+.linha-livros li {
+    margin-right: 10px; /* Espaço entre os itens */
+    list-style: none; /* Remover o marcador da lista */
+}
+
+
+.livro-icon {
+  height: 200px;
+  width: 150px;
+  background-size: cover;
+  background-position: center;
+}
+
+.livro-details p {
+  justify-content: center;
+}
+
+.lista-livros h2{
+  padding-left: 50px;
+  display: flex;
+  justify-content: left;
+  text-decoration: underline;
+}
