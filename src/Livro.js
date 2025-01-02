@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Menu.css";
+import "../src/css/Menu.css";
 
 const Livro = ({ livro }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -10,7 +10,6 @@ const Livro = ({ livro }) => {
         className="livro-icon"
         style={{
           backgroundImage: `url(${livro.image})`,
-          transform: isHovered ? "scale(1.2)" : "scale(1)",
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

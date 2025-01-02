@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./App.css";
+import "../src/css/App.css";
 
 
 const Login = ({setIsAuthenticated}) => {

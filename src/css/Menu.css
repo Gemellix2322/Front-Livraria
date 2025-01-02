@@ -1,5 +1,7 @@
 .Menu {
     text-align: center;
+    background-color: #000 !important;
+    min-height: 100vh;
   }
 
 .App-header-menu {
@@ -13,13 +15,18 @@
     color: white;
   }
   
-  .livros-container {
+  .App-container {
     width: 100%; /* Defina o tamanho do contêiner */
     overflow-x: scroll; /* Adiciona rolagem horizontal */
     cursor: pointer;
+    
 }
 
-.livro-container :hover{
+.App-container h1 {
+  color: white;
+}
+
+.App-container :hover{
   height: auto;
 }
 
@@ -56,6 +63,7 @@
   display: flex;
   justify-content: left;
   text-decoration: underline;
+  color: white;
 }
 
 .Livro {
