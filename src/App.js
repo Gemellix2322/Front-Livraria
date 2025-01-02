@@ -14,12 +14,7 @@ function App() {
         <Route path="/" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
 
         {/* Rota protegida: só acessível se autenticado */}
-        <Route
-          path="/menu"
-          element={
-            <Menu/>
-          }
-        />
+        <Route path="/menu" element={<Menu isAuthenticated={isAuthenticated}/>} />
       </Routes>
   );
 }

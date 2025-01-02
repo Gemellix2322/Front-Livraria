@@ -1,7 +1,17 @@
 import "./Menu.css";
 import ListaLivros from "./ListaLivros.js";
+import { useNavigate } from "react-router-dom";
+import {useEffect } from "react"
 
-const Menu = ({}) => {
+const Menu = ({isAuthenticated}) => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
+
     return (
         <div className="App">
             <header className="App-header-menu">
@@ -12,7 +22,7 @@ const Menu = ({}) => {
                 <ListaLivros/>
             </div>
         </div>
-    )
+    );
 }
 
 export default Menu;
