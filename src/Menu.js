@@ -1,7 +1,7 @@
 import "./Menu.css";
 import ListaLivros from "./ListaLivros.js";
 import { useNavigate } from "react-router-dom";
-import {useEffect } from "react"
+import { useEffect } from "react"
 
 const Menu = ({isAuthenticated}) => {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Menu = ({isAuthenticated}) => {
     }, [isAuthenticated, navigate]);
 
     return (
-        <div className="App">
+        <div className="Menu">
             <header className="App-header-menu">
                 <h1>Bem vindo</h1>
             </header>

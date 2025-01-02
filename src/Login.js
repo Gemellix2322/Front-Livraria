@@ -21,16 +21,19 @@ const Login = ({setIsAuthenticated}) => {
 
     return(
         <div className="App">
-            <header className="App-header">
-                <h1>Login</h1>
-                <form onSubmit={handleSubmit} className="Form-Login">
-                <label>Usuário</label>
-                <input type="text" value={user} onChange={(e) => setUser(e.target.value)} />
-                <label>Senha</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Entrar</button>
+            <div className="col-1"></div>
+            <div className="col-2">
+                <div className="form-container">
+                <form onSubmit={handleSubmit} className="formulario-login">
+                    <h1>Login</h1>
+                    <label>Usuário</label>
+                    <input type="text" value={user} onChange={(e) => setUser(e.target.value)} />
+                    <label>Senha</label>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button type="submit">Entrar</button>
                 </form>
-            </header>
+                </div>
+            </div>
         </div>   
     )
 
