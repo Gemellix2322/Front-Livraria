@@ -24,6 +24,9 @@ const Cadastro = ({addUser}) => {
             <div className="col-1"></div>
             <div className="col-2">
                 <div className="form-container">
+                    <div className="header">
+                        <h1>Livros De Prateleira</h1>
+                    </div>
                 <form onSubmit={handleSubmit} className="formulario-login">
                     <h1>Cadastro</h1>
                     <label>Usuário</label>

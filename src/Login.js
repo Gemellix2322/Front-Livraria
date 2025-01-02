@@ -30,15 +30,18 @@ const Login = ({users}) => {
             <div className="col-1"></div>
             <div className="col-2">
                 <div className="form-container">
-                <form onSubmit={handleSubmit} className="formulario-login">
-                    <h1>Login</h1>
-                    <label>Usuário</label>
-                    <input type="text" value={user} onChange={(e) => setUser(e.target.value)} />
-                    <label>Senha</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <button type="submit">Entrar</button>
-                    <Link to="/cadastro">Não tenho Login</Link>
-                </form>
+                    <div className="header">
+                        <h1>Livros De Prateleira</h1>
+                    </div>
+                    <form onSubmit={handleSubmit} className="formulario-login">
+                        <h1>Login</h1>
+                        <label>Usuário</label>
+                        <input type="text" value={user} onChange={(e) => setUser(e.target.value)} />
+                        <label>Senha</label>
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <button type="submit">Entrar</button>
+                        <Link to="/cadastro">Não tenho Login</Link>
+                    </form>
                 </div>
             </div>
         </div>   
