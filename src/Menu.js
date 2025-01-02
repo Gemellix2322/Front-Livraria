@@ -3,15 +3,8 @@ import ListaLivros from "./ListaLivros.js";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react"
 
-const Menu = ({isAuthenticated}) => {
+const Menu = ({}) => {
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!isAuthenticated) {
-            navigate('/');
-        }
-    }, [isAuthenticated, navigate]);
-
     return (
         <div className="Menu">
             <header className="App-header-menu">
