@@ -30,7 +30,7 @@ const Cadastro = ({addUser}) => {
                 <form onSubmit={handleSubmit} className="formulario-login">
                     <h1>Cadastro</h1>
                     <label>Usuário</label>
-                    <input type="text" value={user} onChange={(e) => setUser(e.target.value)} />
+                    <input autoFocus type="text" value={user} onChange={(e) => setUser(e.target.value)} />
                     <label>Senha</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button type="submit">Cadastrar</button>
