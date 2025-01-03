@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../src/css/App.css";
+import Logo from "./img/Login-Logo.png"
 
 const Cadastro = ({addUser}) => {
     const navigate = useNavigate();
@@ -21,7 +22,9 @@ const Cadastro = ({addUser}) => {
 
     return(
         <div className="App">
-            <div className="col-1"></div>
+            <div className="col-1">
+                <img src={Logo} className="Login-Logo"/>
+            </div>
             <div className="col-2">
                 <div className="form-container">
                     <div className="header">

@@ -13,16 +13,29 @@ body {
   height: 100%;
   min-height: 100vh;
 }
-.col-1{
+.col-1 {
   flex: 1;
-  background-image: url(https://i.imgur.com/jle9bjC.png);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), 
+                    url(https://i.imgur.com/B4fC9uy.png); /* Escurece a imagem */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
+  min-height: 100vh;
+}
+
+
+.Login-Logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: auto;
 }
 .col-2 {
   flex: 1;
-  background-color: #010006;
+  background-color: #111a3a; /* Fallback para navegadores antigos */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,6 +76,11 @@ body {
   margin-bottom: 15px;
   padding: 8px;
   box-sizing: border-box;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.formulario-login button {
+  margin-top: 10px;
 }
 
 .formulario-login input[type="text"],
@@ -107,7 +125,7 @@ body {
 }
 
 .formulario-login button{
-  background-color: #484848;
+  background-color: #7e7e7e;
   color: white;
 }
 
