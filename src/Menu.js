@@ -1,6 +1,5 @@
 import "../src/css/Menu.css";
 import LivrodoDia from "./LivrodoDia.js";
-import { useNavigate} from "react-router-dom";
 import Logo from "../src/img/Logo.png";
 import { Link } from "react-router-dom";
 import Livros from "./Livros.js";
@@ -30,7 +29,6 @@ const Menu = () => {
         },
         
     ]);
-    const navigate = useNavigate();
     return (
         <div className="Menu">
             <header className="App-header-menu">
