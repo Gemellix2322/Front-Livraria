@@ -30,9 +30,18 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 150px;
+  width: 250px;
   height: auto;
 }
+
+.logo-name{
+  color: white;
+  font-size: 45px;
+  position: absolute;
+  top: 60%;
+  left: 34%;
+}
+
 .col-2 {
   flex: 1;
   background-color: #111a3a; /* Fallback para navegadores antigos */
@@ -46,6 +55,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-size: 25px;
   max-width: 400px;
 }
 .form-container h1{
@@ -54,7 +64,7 @@ body {
 }
 
 .header h1 {
-  font-size: 50px;
+  font-size: 60px;
   margin-bottom: 100px;
 }
 .formulario-login {

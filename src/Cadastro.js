@@ -24,11 +24,12 @@ const Cadastro = ({addUser}) => {
         <div className="App">
             <div className="col-1">
                 <img src={Logo} className="Login-Logo" alt="Logo"/>
+                <h1 className="logo-name">Gemelli Cafés Especiais</h1>
             </div>
             <div className="col-2">
                 <div className="form-container">
                     <div className="header">
-                        <h1>Livros De Prateleira</h1>
+                        <h1>Livros de Prateleira</h1>
                     </div>
                 <form onSubmit={handleSubmit} className="formulario-login">
                     <h1>Cadastro</h1>
