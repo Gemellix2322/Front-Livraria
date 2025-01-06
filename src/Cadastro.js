@@ -23,7 +23,7 @@ const Cadastro = ({addUser}) => {
     return(
         <div className="App">
             <div className="col-1">
-                <img src={Logo} className="Login-Logo"/>
+                <img src={Logo} className="Login-Logo" alt="Logo"/>
             </div>
             <div className="col-2">
                 <div className="form-container">
@@ -37,7 +37,7 @@ const Cadastro = ({addUser}) => {
                     <label>Senha</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button type="submit">Cadastrar</button>
-                    <Link to="/">Já tenho Login</Link>
+                    <Link className="link" to="/">Já tenho Login</Link>
                 </form>
                 </div>
             </div>
