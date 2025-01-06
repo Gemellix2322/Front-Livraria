@@ -1,10 +1,35 @@
 import "../src/css/Menu.css";
-import ListaLivros from "./ListaLivros.js";
-import { useNavigate } from "react-router-dom";
+import LivrodoDia from "./LivrodoDia.js";
+import { useNavigate} from "react-router-dom";
 import Logo from "../src/img/Logo.png";
 import { Link } from "react-router-dom";
+import Livros from "./Livros.js";
+import { useState } from "react";
 
-const Menu = ({}) => {
+const Menu = () => {
+    const [livro, useLivro] = useState([
+        {
+            name: "Da certo",
+            description: "Finalmente",
+            image: require("./img/download.jpg"),
+        },
+        {
+            name: "Por favor",
+            description: "Finalmente",
+            image: require("./img/images.jpg"),
+        },
+        {
+            name: "AAAAAAAA",
+            description: "Finalmente",
+            image: require("./img/capa.jpg"),
+        },
+        {
+            name: "AEEEEEEEE",
+            description: "Finalmente",
+            image: require("./img/vermelho.jpg"),
+        },
+        
+    ]);
     const navigate = useNavigate();
     return (
         <div className="Menu">
@@ -14,7 +39,13 @@ const Menu = ({}) => {
             </header>
             <div className="App-container">
                 <h1>Livros Disponiveis</h1>
-                <ListaLivros/>
+                <div>
+                     <LivrodoDia livro={livro}/>
+                </div>
+                <div>
+                    <Livros livro={livro}/>
+                </div>
+
             </div>
         </div>
     );

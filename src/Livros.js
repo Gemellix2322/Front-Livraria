@@ -2,39 +2,18 @@ import React, {useState} from "react";
 import Livro from "./Livro.js";
 import "../src/css/Menu.css"
 
-const Livros = () => {
-    const [livro, useLivro] = useState([
-        {
-            name: "Da certo",
-            description: "Finalmente",
-            image: require("./img/download.jpg"),
-        },
-        {
-            name: "Por favor",
-            description: "Finalmente",
-            image: require("./img/images.jpg"),
-        },
-        {
-            name: "AAAAAAAA",
-            description: "Finalmente",
-            image: require("./img/capa.jpg"),
-        },
-        {
-            name: "AEEEEEEEE",
-            description: "Finalmente",
-            image: require("./img/vermelho.jpg"),
-        },
-        
-    ]);
-    
-
+const Livros = ({livro}) => {
+    if (!Array.isArray(livro)) {
+        return <div>Erro: 'livro' não é um array!</div>;
+    }
     return (
-        <div className="livros-container">
+        <div className="lista-livros">
+            <h2>Livros Disponíveis</h2>
             <ul className="linha-livros">
-                {livro.map((livro, index) => {
+                {livro.map((l, index) => {
                     return(
                     <li key={index}>
-                        <Livro livro={livro}/>
+                        <Livro livro={l}/>
                     </li>
                     )
                 })}

@@ -39,6 +39,7 @@
 
 .App-container h1 {
   color: #ffffff;
+  margin-left: 1rem;
   margin-bottom: 2rem;
   font-weight: 600;
 }
