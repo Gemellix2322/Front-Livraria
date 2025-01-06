@@ -3,6 +3,7 @@ import {useNavigate, Route, Router, Routes} from "react-router-dom";
 import Login from "./Login.js";
 import Menu from "./Menu.js";
 import Cadastro from "./Cadastro.js";
+import Profile from "./Profile.js";
 import React, {useState} from 'react';
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
 
         {/* Rota protegida: só acessível se autenticado */}
         <Route path="/menu" element={<Menu/>} />
+
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
   );
 }
