@@ -4,6 +4,9 @@ import Logo from "../src/img/Logo.png";
 import { Link } from "react-router-dom";
 import Livros from "./Livros.js";
 import { useState } from "react";
+import { FiUser } from "react-icons/fi";
+
+
 
 const Menu = () => {
     const [livro, useLivro] = useState([
@@ -32,7 +35,8 @@ const Menu = () => {
     return (
         <div className="Menu">
             <header className="App-header-menu">
-                <Link to={'/profile'}><img src={Logo} alt="Logo" className="Logo"/></Link>
+                <Link to={'/profile'}className="link-profile"><FiUser className="profile"/></Link>
+                <Link to={'https://www.instagram.com/gemellicafes/'}><img src={Logo} alt="Logo" className="Logo"/></Link>
                 <h1>Bem vindo</h1>
             </header>
             <div className="App-container">
