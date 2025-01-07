@@ -8,7 +8,7 @@ import { FiUser } from "react-icons/fi";
 
 
 
-const Menu = () => {
+const Menu = ({users}) => {
     const [livro, useLivro] = useState([
         {
             name: "Da certo",
@@ -37,7 +37,7 @@ const Menu = () => {
             <header className="App-header-menu">
                 <Link to={'/profile'}className="link-profile"><FiUser className="profile"/></Link>
                 <Link to={'https://www.instagram.com/gemellicafes/'}><img src={Logo} alt="Logo" className="Logo"/></Link>
-                <h1>Bem vindo</h1>
+                <h1>`Bem-vindo ${users.username}´</h1>
             </header>
             <div className="App-container">
                 <h1>Livros Disponiveis</h1>

@@ -5,6 +5,9 @@ import "../src/css/App.css";
 import Logo from "./img/Login-Logo.png"
 
 const Cadastro = ({addUser}) => {
+    function generateId() {
+        return Math.random().toString(36).substring(2, 7); // Obtém 5 caracteres a partir de uma string aleatória
+    }
     const navigate = useNavigate();
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +15,11 @@ const Cadastro = ({addUser}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(user && password) {
+            const newUser = {
+                user,
+                password,
+                username: `${user}${generateId()}`, // Concatena `user` com o ID gerado
+            };
             addUser({user, password}); //Passa os dados para o Array
             alert("Usuário Cadastrado com sucesso!");
             navigate("/");

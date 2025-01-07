@@ -9,15 +9,20 @@ import React, {useState} from 'react';
 function App() {
 
 
-  const [users, setUsers] = useState([{
-    user: "gui",
-    password: "123",
-  }]);
-
-  const addUser = (user) => {
-    setUsers((prevUsers) => [...prevUsers, user]);
-    console.log("Usuários Cadastrados: ", [...users, user]);
-  }
+  const [users, setUsers] = useState(() => {
+    const savedUsers = localStorage.getItem('users');
+    return savedUsers ? JSON.parse(savedUsers) : [{
+      user: "gui",
+      password: "123",
+      username: "guilherme",
+    }];
+  });
+  
+  const addUser = (newUser) => {
+    const updatedUsers = [...users, newUser];
+    setUsers(updatedUsers);
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+  };
 
   return (
       <Routes>
@@ -27,7 +32,7 @@ function App() {
         <Route path="/cadastro" element={<Cadastro addUser={addUser}/>}/>
 
         {/* Rota protegida: só acessível se autenticado */}
-        <Route path="/menu" element={<Menu/>} />
+        <Route path="/menu" element={<Menu users={users}/>} />
 
         <Route path="/profile" element={<Profile users={users}/>}/>
       </Routes>

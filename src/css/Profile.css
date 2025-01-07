@@ -26,26 +26,36 @@ body {
     color: white;
   }
 
-  .picture{
+  .picture {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-  }
+    margin-bottom: 10px;
+    margin-top: 150px;
+}
 
-  .picture-details {
-    position: absolute;
-    top: 45%;
-    left: 47.6%;
-    color: white;
+.picture-details {
+    color: #666;
     font-size: 25px;
-  }
+    cursor: pointer;
+}
+
+  .profile-picture-input {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    margin: 0;
+    border: 2px solid #ddd;
+    overflow: hidden;
+}
 
   .form-profile {
     display: flex;
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    height: 120vh; 
+    height: 40vh; 
     width: 100%; 
   }
   
