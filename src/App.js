@@ -29,7 +29,7 @@ function App() {
         {/* Rota protegida: só acessível se autenticado */}
         <Route path="/menu" element={<Menu/>} />
 
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/profile" element={<Profile users={users}/>}/>
       </Routes>
   );
 }
