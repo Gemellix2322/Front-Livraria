@@ -23,6 +23,9 @@ const Livro = ({ livro }) => {
         <div className="livro-details">
           <p>{livro.name || 'Sem título'}</p>
           <p>{livro.description || 'Sem descrição'}</p>
+          <div className="icon-genero">
+            <p>{livro.genre || 'Sem Gênero'}</p>
+          </div>          
         </div>
       )}
     </div>

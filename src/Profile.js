@@ -40,7 +40,7 @@ const Profile = ({users}) => {
                     maxHeight={200}
                     defaultImg={formData.profile_picture}
                 />
-                <p className="picture-details">Clique na foto para alterá-la</p>
+                <div className="picture-icon"><p>+</p></div>
             </div>
             <div className="profile-details">
                 <form className="form-profile" onSubmit={handleSubmit}>

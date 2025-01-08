@@ -124,6 +124,18 @@
   transition: bottom 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.livro-details .icon-genero {
+  display: inline-block; 
+  border: 1px solid white;
+  border-radius: 10px; 
+  padding: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.livro-details .icon-genero p {
+  margin: 0;
+}
+
 .Livro:hover .livro-details {
   bottom: 0;
 }

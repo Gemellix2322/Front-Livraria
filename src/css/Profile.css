@@ -34,6 +34,31 @@ body {
     margin-top: 150px;
 }
 
+.picture .picture-icon {
+  position: absolute;
+  overflow: hidden;
+  height: 34.22px;
+  width: 34.22px;
+  margin: 0;
+  padding: 6px;
+  top: 32%;
+  left: 52%;
+  border: 1px solid white;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.picture .picture-icon p {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 90px;
+}
+
 .picture-details {
     color: #666;
     font-size: 25px;
