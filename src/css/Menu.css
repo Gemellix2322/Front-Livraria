@@ -16,6 +16,15 @@
   padding: 0 2rem;
 }
 
+.profile_picture_menu {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 0;
+    border: 2px solid #ddd;
+    overflow: hidden;
+}
+
 .Logo {
   width: 50px;
   margin-right: 15px;

@@ -9,7 +9,15 @@ import api from "./Api.js";
 
 
 const Menu = ({ users }) => {
-
+    const currentUser = users[0];
+    
+    const [formData, setFormData] = useState({
+        name: currentUser.username,
+        user: currentUser.name,
+        password: currentUser.password,
+        profile_picture: currentUser.profile_picture,
+    });
+    
     const [livro, setLivros] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -34,8 +42,8 @@ const Menu = ({ users }) => {
     return (
         <div className="Menu">
             <header className="App-header-menu">
-                <Link to={'/profile'} className="link-profile">
-                    <FiUser className="profile"/>
+                <Link to={'/profile'}>
+                    <img className="profile_picture_menu" style={{backgroundImage: `url(${formData.profile_picture})`}}/>
                 </Link>
                 <Link to={'https://www.instagram.com/gemellicafes/'}>
                     <img src={Logo} alt="Logo" className="Logo"/>
