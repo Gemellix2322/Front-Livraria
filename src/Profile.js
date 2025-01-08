@@ -9,9 +9,9 @@ const Profile = ({users}) => {
     
     const [formData, setFormData] = useState({
         name: currentUser.username,
-        user: currentUser.user,
+        user: currentUser.name,
         password: currentUser.password,
-        avatar: ''
+        profile_picture: currentUser.profile_picture,
     });
 
     const handleChange = (e) => {
@@ -38,6 +38,7 @@ const Profile = ({users}) => {
                     className="profile-picture-input"
                     name="avatar"
                     maxHeight={200}
+                    defaultImg={formData.profile_picture}
                 />
                 <p className="picture-details">Clique na foto para alterá-la</p>
             </div>

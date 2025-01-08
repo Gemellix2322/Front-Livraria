@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const ImageInput = ({ className, name, maxHeight = 200 }) => {
-    const [preview, setPreview] = useState('');
+const ImageInput = ({ className, name, maxHeight = 200, defaultImg}) => {
+    const [preview, setPreview] = useState(defaultImg || '');
 
     const readAndResizeImage = async (file) => {
         // Criar uma Promise para ler o arquivo
