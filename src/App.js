@@ -6,6 +6,7 @@ import Cadastro from "./Cadastro.js";
 import Profile from "./Profile.js";
 import React, {useEffect, useState} from 'react';
 import api from "./Api.js";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
@@ -29,6 +30,8 @@ function App() {
 
 
   return (
+    <div>
+      <ToastContainer/>
       <Routes>
         {/* Tela de Login */}
         <Route path="/" element={<Login users={users}/>} />
@@ -40,6 +43,7 @@ function App() {
 
         <Route path="/profile" element={<Profile users={users}/>}/>
       </Routes>
+    </div>
   );
 }
 

@@ -6,23 +6,21 @@ import Livros from "./Livros.js";
 import { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
 import api from "./Api.js";
+import { ToastContainer } from "react-toastify";
+import notify from "./NewAlert.js";
+import 'react-toastify/dist/ReactToastify.css';
+ 
 
 
 const Menu = ({ users }) => {
-    const currentUser = users[0];
-    
-    const [formData, setFormData] = useState({
-        name: currentUser.username,
-        user: currentUser.name,
-        password: currentUser.password,
-        profile_picture: currentUser.profile_picture,
-    });
     
     const [livro, setLivros] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        console.log('Chamando notify...');
+        notify('Logado com sucesso', 'success', 900);
         console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/books`);
         api.get('/books')
             .then(response => {
@@ -30,20 +28,22 @@ const Menu = ({ users }) => {
                 setLoading(false);
             })
             .catch(error => {
-                console.error('Erro ao buscar livros:', error);
+                notify('Erro ao buscar livros:', 'error');
                 setError(error);
                 setLoading(false);
             });
+
     }, []);
-    
+
     if (loading) return <div>Carregando...</div>;
     if (error) return <div>Erro ao carregar livros: {error.message}</div>;
+
     
     return (
         <div className="Menu">
             <header className="App-header-menu">
                 <Link to={'/profile'}>
-                    <img className="profile_picture_menu" style={{backgroundImage: `url(${formData.profile_picture})`}}/>
+                    <img className="profile_picture_menu" style={{backgroundImage: `url(https://imgur.com/66mqgNZ.png)`}}/>
                 </Link>
                 <Link to={'https://www.instagram.com/gemellicafes/'}>
                     <img src={Logo} alt="Logo" className="Logo"/>

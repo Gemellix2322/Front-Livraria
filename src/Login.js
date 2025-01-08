@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../src/css/App.css";
 import Logo from "./img/Login-Logo.png";
+import notify from "./NewAlert";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ users }) => {
     const navigate = useNavigate();
@@ -26,14 +28,14 @@ const Login = ({ users }) => {
         
         // Validações básicas
         if (!name.trim() || !password.trim()) {
-            alert("Por favor, preencha todos os campos");
+            notify('Por favor, preencha todos os campos', 'warning');
             return;
         }
 
         // Verifica se users existe e é um array
         if (!Array.isArray(users)) {
             console.error('Users não é um array:', users);
-            alert("Erro ao verificar credenciais. Tente novamente.");
+            notify('Erro ao verificar credenciais. Tente novamente.', 'error');
             return;
         }
 
@@ -45,7 +47,7 @@ const Login = ({ users }) => {
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             navigate("/menu");
         } else {
-            alert("Credenciais inválidas");
+            notify('Credenciais inválidas', 'error')
         }
     };
 
