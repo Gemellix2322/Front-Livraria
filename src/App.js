@@ -27,19 +27,13 @@ function App() {
       });
   }, []);
 
-  
-  const addUser = (newUser) => {
-    const updatedUsers = [...users, newUser];
-    setUsers(updatedUsers);
-    localStorage.setItem('users', JSON.stringify(updatedUsers));
-  };
 
   return (
       <Routes>
         {/* Tela de Login */}
         <Route path="/" element={<Login users={users}/>} />
 
-        <Route path="/cadastro" element={<Cadastro addUser={addUser}/>}/>
+        <Route path="/cadastro" element={<Cadastro/>}/>
 
         {/* Rota protegida: só acessível se autenticado */}
         <Route path="/menu" element={<Menu users={users}/>} />

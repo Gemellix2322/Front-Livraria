@@ -4,28 +4,12 @@ import { useNavigate } from "react-router-dom";
 import "../src/css/App.css";
 import Logo from "./img/Login-Logo.png"
 
-const Cadastro = ({addUser}) => {
-    function generateId() {
-        return Math.random().toString(36).substring(2, 7); // Obtém 5 caracteres a partir de uma string aleatória
-    }
+const Cadastro = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState("");
-    const [password, setPassword] = useState("");
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(user && password) {
-            const newUser = {
-                user,
-                password,
-                username: `${user}${generateId()}`, // Concatena `user` com o ID gerado
-            };
-            addUser({user, password}); //Passa os dados para o Array
-            alert("Usuário Cadastrado com sucesso!");
-            navigate("/");
-        } else {
-            alert("Preencha todos os campos!");
-        }
+        alert("Cadastrado");
+        navigate("/")
     } 
 
     return(
@@ -42,9 +26,9 @@ const Cadastro = ({addUser}) => {
                 <form onSubmit={handleSubmit} className="formulario-login">
                     <h1>Cadastro</h1>
                     <label>Usuário</label>
-                    <input autoFocus type="text" value={user} onChange={(e) => setUser(e.target.value)} />
+                    <input autoFocus type="text"/>
                     <label>Senha</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password"/>
                     <button type="submit">Cadastrar</button>
                     <Link className="link" to="/">Já tenho Login</Link>
                 </form>
