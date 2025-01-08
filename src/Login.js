@@ -17,7 +17,7 @@ const Login = ({users}) => {
             (u) => u.user === user && u.password === password
         )
 
-        if(isValidUser){
+        if(!isValidUser){
             
             navigate("/menu");
         }else {

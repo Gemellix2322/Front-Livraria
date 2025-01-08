@@ -4,19 +4,29 @@ import Login from "./Login.js";
 import Menu from "./Menu.js";
 import Cadastro from "./Cadastro.js";
 import Profile from "./Profile.js";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import api from "./Api.js";
 
 function App() {
 
 
-  const [users, setUsers] = useState(() => {
-    const savedUsers = localStorage.getItem('users');
-    return savedUsers ? JSON.parse(savedUsers) : [{
-      user: "gui",
-      password: "123",
-      username: "guilherme",
-    }];
-  });
+  const [users, setUsers] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/users`);
+    api.get('/users')
+      .then(response => {
+        setUsers(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar usuários:', error);
+        setLoading(false);
+      });
+  }, []);
+
   
   const addUser = (newUser) => {
     const updatedUsers = [...users, newUser];
