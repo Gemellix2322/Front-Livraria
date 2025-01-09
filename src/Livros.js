@@ -18,9 +18,9 @@ const Livros = ({ livro }) => {
                     console.log(l)
                     return(
                     <li key={l.id}>
-                        <a href={`/livrodetails/${l.name}`}>
+                        <Link to={`/livrodetails/${l.name}`}>
                             <Livro livro={l} />
-                        </a>
+                        </Link>
                     </li>
                     )
                 })}

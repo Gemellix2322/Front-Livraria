@@ -22,7 +22,7 @@ const Livro = ({ livro }) => {
       {isHovered && (
         <div className="livro-details">
           <p>{livro.name || 'Sem título'}</p>
-          <p>{livro.description || 'Sem descrição'}</p>
+          <p>{livro.description?.length > 25 ? livro.description.slice(0, 45) + '...' : livro.description}</p>
           <div className="icon-genero">
             <p>{livro.genre || 'Sem Gênero'}</p>
           </div>          

@@ -42,7 +42,7 @@ const Menu = ({ users }) => {
         <div className="Menu">
             <header className="App-header-menu">
                 <Link to={'/profile'}>
-                    <img className="profile_picture_menu" style={{backgroundImage: `url(https://imgur.com/66mqgNZ.png)`}}/>
+                    <img className="profile_picture_menu" style={{backgroundImage: `url(${livro.cover_image})`}}/>
                 </Link>
                 <Link to={'https://www.instagram.com/gemellicafes/'}>
                     <img src={Logo} alt="Logo" className="Logo"/>

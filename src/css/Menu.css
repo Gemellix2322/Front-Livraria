@@ -157,3 +157,46 @@
 .App-container::-webkit-scrollbar-thumb:hover {
   background: #718096;
 }
+
+.Livro-container {
+  display: flex;
+}
+
+.livro-col1 {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: auto;
+}
+
+.livro-col2 {
+  flex: 1;
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  margin-top: 150px;
+}
+
+.Titulo {
+  font-size: 50px;
+}
+
+.Descricao {
+  font-size: 30px;
+  max-width: 500px;
+}
+
+.Livro-Details {
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.capa-livro img{
+  margin-top: 150px;
+  width: 325px;
+  height: 500px;
+  border-radius: 20px;
+}
