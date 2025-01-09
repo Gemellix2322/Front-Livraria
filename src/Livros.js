@@ -12,16 +12,13 @@ const Livros = ({ livro }) => {
 
     return (
         <div className="lista-livros">
-            <Link to={`/livrodetails/${livro[0].id}`}>
-                <Livro livro={livro[0]} />
-            </Link>
             <h2>Livros Disponíveis</h2>
             <ul className="linha-livros">
                 {livro.map((l) => {
                     console.log(l)
                     return(
                     <li key={l.id}>
-                        <a href={'/caguei'}>
+                        <a href={`/livrodetails/${l.name}`}>
                             <Livro livro={l} />
                         </a>
                     </li>

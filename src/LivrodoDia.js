@@ -13,7 +13,7 @@ const LivrodoDia = ({ livro }) => {
             <div className="linha-livros">
                 <div className="livros-container">
                     <div className="linha-livros">
-                    <Link to={`/livro${livro.name}`}>
+                    <Link to={`/livrodetails/${livroAleatorio.name}`}>
                         <Livro livro={livroAleatorio}/>
                     </Link>   
                     </div>

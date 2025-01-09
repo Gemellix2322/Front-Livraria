@@ -62,7 +62,7 @@ function App() {
 
         <Route path="/profile" element={<Profile users={users}/>}/>
 
-        <Route path="/livrodetails" element={<LivroDetails users={users} livros={livro}/>}/>
+        <Route path={`/livrodetails/${livro.name}`} element={<LivroDetails users={users} livros={livro}/>}/>
       </Routes>
     </div>
   );
