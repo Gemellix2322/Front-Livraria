@@ -4,6 +4,7 @@ import Livro from "./Livro.js";
 import "../src/css/Menu.css"
 
 const Livros = ({ livro }) => {
+    const linkPath = '/livrodetails'
     // Verificação de segurança
     if (!Array.isArray(livro) || livro.length === 0) {
         return <div>Carregando livros...</div>;
@@ -11,15 +12,21 @@ const Livros = ({ livro }) => {
 
     return (
         <div className="lista-livros">
+            <Link to={`/livrodetails/${livro[0].id}`}>
+                <Livro livro={livro[0]} />
+            </Link>
             <h2>Livros Disponíveis</h2>
             <ul className="linha-livros">
-                {livro.map((l, index) => (
-                    <li key={l.id || index}>
-                        <Link to={`/livro/${l.name}`}>
-                            <Livro livro={l}/>
-                        </Link>
+                {livro.map((l) => {
+                    console.log(l)
+                    return(
+                    <li key={l.id}>
+                        <a href={'/caguei'}>
+                            <Livro livro={l} />
+                        </a>
                     </li>
-                ))}
+                    )
+                })}
             </ul>
         </div>
     );

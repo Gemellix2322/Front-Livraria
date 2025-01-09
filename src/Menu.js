@@ -19,7 +19,6 @@ const Menu = ({ users }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log('Chamando notify...');
         notify('Logado com sucesso', 'success', 900);
         console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/books`);
         api.get('/books')
