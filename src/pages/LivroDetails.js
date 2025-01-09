@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Logo from '../img/Logo.png'
 import Comentarios from './Comentarios';
+import { FiArrowLeft } from "react-icons/fi";
 
 
 function LivroDetails({ users, livros }) {
@@ -29,6 +30,9 @@ function LivroDetails({ users, livros }) {
                 </Link>
             </header>
             <div className="Livro-container">
+                <Link className="link-arrow-back" to={"/menu"}>
+                    <FiArrowLeft className="ArrowBack-profiledetails"/>
+                </Link>
                 <div className='livro-col1'>
                     <div className='capa-livro'>
                         <img src={capa} />

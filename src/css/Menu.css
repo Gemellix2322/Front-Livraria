@@ -200,3 +200,11 @@
   height: 500px;
   border-radius: 20px;
 }
+
+.ArrowBack-profiledetails {
+  width: 60px;
+  height: auto;
+  position: absolute;
+  top: 25%;
+  left: 3%;
+}
