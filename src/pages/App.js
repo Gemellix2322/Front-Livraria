@@ -2,13 +2,13 @@ import "../src/css/App.css"
 import {useNavigate, Route, Router, Routes} from "react-router-dom";
 import Login from "./Login.js";
 import Menu from "./Menu.js";
-import Cadastro from "./Cadastro.js";
+import Cadastro from "../Cadastro.js";
 import Profile from "./Profile.js";
 import React, {useEffect, useState} from 'react';
-import api from "./Api.js";
+import api from "../components/Api.js";
 import { ToastContainer } from "react-toastify";
 import LivroDetails from "./LivroDetails.js";
-import notify from "./NewAlert.js";
+import notify from "../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {

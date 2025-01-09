@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import Livros from "./Livros.js";
 import { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
-import api from "./Api.js";
+import api from "../components/Api.js";
 import { ToastContainer } from "react-toastify";
-import notify from "./NewAlert.js";
+import notify from "../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
  
 

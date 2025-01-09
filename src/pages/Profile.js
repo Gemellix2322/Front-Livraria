@@ -2,7 +2,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./css/Profile.css";
 import { useState } from "react";
-import ImageInput from "./ImageInput";
+import ImageInput from "../components/ImageInput";
 
 const Profile = ({users}) => {
     const currentUser = users[0];
