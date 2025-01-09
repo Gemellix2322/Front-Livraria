@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "../src/css/App.css";
-import Logo from "./img/Login-Logo.png"
+import "../css/App.css";
+import Logo from "../img/Login-Logo.png"
 import { wait } from "@testing-library/user-event/dist/utils";
-import notify from "./NewAlert";
+import notify from "../components/NewAlert";
 import 'react-toastify/dist/ReactToastify.css';
 
 const Cadastro = () => {

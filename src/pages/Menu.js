@@ -1,6 +1,6 @@
-import "../src/css/Menu.css";
+import "../css/Menu.css";
 import LivrodoDia from "./LivrodoDia.js";
-import Logo from "../src/img/Logo.png";
+import Logo from "../img/Logo.png";
 import { Link } from "react-router-dom";
 import Livros from "./Livros.js";
 import { useEffect, useState } from "react";

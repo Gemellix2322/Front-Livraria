@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Logo from './img/Logo.png'
+import Logo from '../img/Logo.png'
 import Comentarios from './Comentarios';
 
 

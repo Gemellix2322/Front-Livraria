@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../src/css/Menu.css";
+import "../css/Menu.css";
 
 const Livro = ({ livro }) => {
   const [isHovered, setIsHovered] = useState(false);

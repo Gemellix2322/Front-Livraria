@@ -1,6 +1,6 @@
 import { FiArrowLeft } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import "./css/Profile.css";
+import "../css/Profile.css";
 import { useState } from "react";
 import ImageInput from "../components/ImageInput";
 
