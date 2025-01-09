@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Logo from './img/Logo.png'
+import Comentarios from './Comentarios';
 
 
 function LivroDetails({ users, livros }) {
@@ -37,6 +38,9 @@ function LivroDetails({ users, livros }) {
                     <h1 className='Titulo'>{livro.name}</h1>
                     <p className='Descricao'>{livro.description}</p>
                 </div>
+            </div>
+            <div className='Comentarios'>
+                <Comentarios/>
             </div>
         </div>
   );
