@@ -171,10 +171,6 @@
   display: flex;
 }
 
-.livro-details :hover {
-
-}
-
 .livro-col1 {
   flex: 1;
   align-items: center;
@@ -215,7 +211,7 @@
 }
 
 .ArrowBack-profiledetails {
-  width: 60px;
+  width: 40px;
   height: auto;
   position: absolute;
   top: 25%;

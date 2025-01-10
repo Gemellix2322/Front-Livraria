@@ -9,6 +9,7 @@ import api from "../components/Api.js";
 import { ToastContainer } from "react-toastify";
 import notify from "../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from "./Navbar.js";
  
 
 
@@ -17,6 +18,7 @@ const Menu = ({ users }) => {
     const [livro, setLivros] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
     useEffect(() => {
         notify('Logado com sucesso', 'success', 900);
@@ -41,12 +43,12 @@ const Menu = ({ users }) => {
     return (
         <div className="Menu">
             <header className="App-header-menu">
-                <Link to={'/profile'}>
+                <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{cursor: 'pointer'}}>
                     <img className="profile_picture_menu" style={{backgroundImage: `url(${livro.cover_image})`}}/>
-                </Link>
-                <Link to={'https://www.instagram.com/gemellicafes/'}>
-                    <img src={Logo} alt="Logo" className="Logo"/>
-                </Link>
+                </a>
+                {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users}
+        setIsNavbarOpen={setIsNavbarOpen}/> : null}
+                <img src={Logo} alt="Logo" className="Logo"/>
                 <h1>{users?.username ? `Bem-vindo ${users.username}` : 'Bem-vindo'}</h1>
             </header>
             <div className="App-container">
