@@ -8,16 +8,16 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ users }) => {
     const navigate = useNavigate();
-    const [name, setUser] = useState("");
+    const [username, setUser] = useState("");
     const [password, setPassword] = useState("");
     
     // Função para debug
     const checkUserCredentials = (inputUser, inputPassword) => {
-        console.log('Tentando login com:', { name: inputUser, password: inputPassword });
+        console.log('Tentando login com:', { username: inputUser, password: inputPassword });
         console.log('Usuários disponíveis:', users);
         
         return users.some((u) => {
-            const isMatch = (u.name || u.name) === inputUser && u.password === inputPassword;
+            const isMatch = (u.username || u.username) === inputUser && u.password === inputPassword;
             console.log('Comparando com:', u, 'Resultado:', isMatch);
             return isMatch;
         });
@@ -27,7 +27,7 @@ const Login = ({ users }) => {
         event.preventDefault();
         
         // Validações básicas
-        if (!name.trim() || !password.trim()) {
+        if (!username.trim() || !password.trim()) {
             notify('Por favor, preencha todos os campos', 'warning');
             return;
         }
@@ -39,11 +39,11 @@ const Login = ({ users }) => {
             return;
         }
 
-        const isValidUser = checkUserCredentials(name, password);
+        const isValidUser = checkUserCredentials(username, password);
 
         if (isValidUser) {
             // Guarda o usuário atual no localStorage
-            const currentUser = users.find(u => (u.name || u.name) === name);
+            const currentUser = users.find(u => (u.username || u.username) === username);
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             navigate("/menu");
         } else {
@@ -68,7 +68,7 @@ const Login = ({ users }) => {
                         <input 
                             autoFocus 
                             type="text" 
-                            value={name} 
+                            value={username} 
                             onChange={(e) => setUser(e.target.value)}
                             required 
                         />

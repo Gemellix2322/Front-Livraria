@@ -3,18 +3,44 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../css/App.css";
 import Logo from "../img/Login-Logo.png"
-import { wait } from "@testing-library/user-event/dist/utils";
 import notify from "../components/NewAlert";
 import 'react-toastify/dist/ReactToastify.css';
+import api from "../components/Api";
 
-const Cadastro = () => {
+const Cadastro = ({users}) => {
     const navigate = useNavigate();
-    const handleSubmit = (e) => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleUsernameChange = (e) => setUsername(e.target.value);
+    const handlePasswordChange = (e) => setPassword(e.target.value);
+
+    console.log('Tentando fazer POST para:', `${api.defaults.baseURL}/users`);
+    console.log('Dados sendo enviados:', { username, password });
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        notify('Cadastrado com sucesso', 'success')
-        wait(100)
-        navigate("/")
-    } 
+    
+        try {
+            console.log('Iniciando requisição para:', api.defaults.baseURL);
+            const response = await api.post("/users", {
+                username: username,
+                password: password,
+            });
+    
+            if (response.status === 200) {
+                notify('Cadastrado com sucesso', 'success');
+                setTimeout(() => navigate("/"), 100); // Aguarda antes de redirecionar
+            } else {
+                notify('Erro ao cadastrar usuário', 'error');
+            }
+        } catch (error) {
+            console.error("Erro completo:", error);
+            console.error("URL da requisição:", error.config?.url);
+            console.error("Método da requisição:", error.config?.method);
+            notify('Erro ao cadastrar usuário', 'error');
+        }
+    };
 
     return(
         <div className="App">
@@ -30,9 +56,9 @@ const Cadastro = () => {
                 <form onSubmit={handleSubmit} className="formulario-login">
                     <h1>Cadastro</h1>
                     <label>Usuário</label>
-                    <input autoFocus type="text"/>
+                    <input id="user" autoFocus type="text" value={username} onChange={handleUsernameChange} />
                     <label>Senha</label>
-                    <input type="password"/>
+                    <input id="password" type="password" value={password} onChange={handlePasswordChange} />
                     <button type="submit">Cadastrar</button>
                     <Link className="link" to="/">Já tenho Login</Link>
                 </form>

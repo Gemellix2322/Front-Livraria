@@ -55,7 +55,7 @@ function App() {
         {/* Tela de Login */}
         <Route path="/" element={<Login users={users}/>} />
 
-        <Route path="/cadastro" element={<Cadastro/>}/>
+        <Route path="/cadastro" element={<Cadastro users={users}/>}/>
 
         {/* Rota protegida: só acessível se autenticado */}
         <Route path="/menu" element={<Menu users={users}/>} />

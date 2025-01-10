@@ -26,14 +26,14 @@
     height: 100vh;
     background-color: #142046;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
     z-index: 999;
     padding: 20px;
     transform: translateX(0);
+    transition: transform 1s ease-in-out;
 }
 
 .sidebar.open {
-    transform: translateX(300px); /* Alterado para zero */
+    transform: translateX(300px); 
 }
 
 .sidebar.hidden {

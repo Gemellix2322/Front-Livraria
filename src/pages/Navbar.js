@@ -12,7 +12,7 @@ const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen }) => {
             {/* Overlay para fechar o menu ao clicar fora */}
             {isNavbarOpen && (
                 <div
-                    className="sidebar-overlay"
+                    className={`sidebar-overlay ${isNavbarOpen ? 'open' : ''}`}
                     onClick={closeSidebar}
                 />
             )}
