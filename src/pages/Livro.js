@@ -16,10 +16,8 @@ const Livro = ({ livro }) => {
         style={{
           backgroundImage: livro.cover_image ? `url(${livro.cover_image})` : 'none',
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       ></div>
-      {isHovered && (
+      {(
         <div className="livro-details">
           <p>{livro.name || 'Sem título'}</p>
           <p>{livro.description?.length > 25 ? livro.description.slice(0, 45) + '...' : livro.description}</p>

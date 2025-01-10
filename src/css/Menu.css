@@ -96,6 +96,13 @@
   height: 300px;
   perspective: 1000px;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.Livro:hover .livro-details{
+  z-index: 2;
+  transform: translateY(0);
 }
 
 .Livro:hover {
@@ -113,15 +120,17 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .livro-details {
+  z-index: 0;
   position: absolute;
-  bottom: -100%;
+  bottom: 0;
   left: 0;
   right: 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7));
   color: #ffffff;
   padding: 1.5rem 1rem;
   border-radius: 0 0 8px 8px;
-  transition: bottom 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(100%);
 }
 
 .livro-details .icon-genero {
@@ -160,6 +169,10 @@
 
 .Livro-container {
   display: flex;
+}
+
+.livro-details :hover {
+
 }
 
 .livro-col1 {
