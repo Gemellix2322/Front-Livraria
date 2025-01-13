@@ -2,6 +2,9 @@
     position: relative;
 }
 
+a {
+    text-decoration: none;
+}
 /* Overlay que cobre a tela inteira */
 .sidebar-overlay {
     position: fixed;
@@ -27,7 +30,7 @@
     left: -300px;
     width: 300px;
     height: 100vh;
-    background-color: #142046;
+    background: linear-gradient(48deg, #121b3b 0%, #18254e 54%, #25366f 100%);
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     z-index: 999;
     padding: 20px;
@@ -79,13 +82,59 @@
 .sidebar-content li {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     padding: 15px 0;
     cursor: pointer;
+    border-radius: 10px;
     transition: background-color 0.2s;
+    padding-left: 10px;
+    color: white;
+    text-decoration: none;
 }
 
 /* Efeito de hover nos itens */
 .sidebar-content li:hover {
     background-color: #f5f5f5;
+    color: black;
+}
+
+.navbar-profile {
+    max-width: 100px;
+}
+
+.link-icons {
+    color: white;
+    text-decoration: none;
+}
+
+.link-insta {
+    display: flex;
+    margin: 0;
+}
+
+.link-insta p {
+    color: white;
+    margin: 0;
+    padding: 20px 20px 15px 20px;
+}
+
+.link-insta :hover {
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+    background-color: #f5f5f5;
+    color: black;
+}
+
+.link-insta .insta-logo {
+    max-width: 35px;
+    color: white;
+}
+
+.link-insta :hover .insta-logo {
+    color: black;
+}
+
+.div-insta {
+    display: flex;
 }
