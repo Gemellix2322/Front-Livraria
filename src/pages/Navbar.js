@@ -3,6 +3,13 @@ import '../css/Navbar.css';
 import { useRef, useEffect} from 'react';
 
 const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen}) => {
+    useEffect(() => {
+        if (isNavbarOpen) {
+            openSidebar();
+        } else {
+            closeSidebar();
+        }
+    }, [isNavbarOpen]);
 
     const sidebarRef = useRef(null);
     const overlayRef = useRef(null);
@@ -18,7 +25,15 @@ const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen}) => {
         }
     };
 
-    
+    const openSidebar = () => {
+        // Acessa a referência da sidebar e do overlay para manipular as classes
+        if (sidebarRef.current && overlayRef.current) {
+            sidebarRef.current.classList.remove('hidden');
+            sidebarRef.current.classList.add('open');
+            overlayRef.current.classList.remove('hidden');
+            overlayRef.current.classList.add('open');
+        }
+    };
 
     
 
