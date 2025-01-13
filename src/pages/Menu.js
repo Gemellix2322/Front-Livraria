@@ -46,8 +46,7 @@ const Menu = ({ users }) => {
                 <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{cursor: 'pointer'}}>
                     <img className="profile_picture_menu" style={{backgroundImage: `url(${livro.cover_image})`}}/>
                 </a>
-                {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users}
-        setIsNavbarOpen={setIsNavbarOpen}/> : null}
+                {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/> : null}
                 <img src={Logo} alt="Logo" className="Logo"/>
                 <h1>{users?.username ? `Bem-vindo ${users.username}` : 'Bem-vindo'}</h1>
             </header>

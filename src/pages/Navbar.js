@@ -1,24 +1,37 @@
-// Navbar.js
 import { FiX, FiUser, FiSettings, FiLogOut } from 'react-icons/fi';
 import '../css/Navbar.css';
+import { useRef, useEffect} from 'react';
 
-const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen }) => {
+const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen}) => {
+
+    const sidebarRef = useRef(null);
+    const overlayRef = useRef(null);
+
     const closeSidebar = () => {
-        setIsNavbarOpen(false); // Define isNavbarOpen como falso
+        isNavbarOpen(false)
+        // Acessa a referência da sidebar e do overlay para manipular as classes
+        if (sidebarRef.current && overlayRef.current) {
+            sidebarRef.current.classList.remove('open');
+            sidebarRef.current.classList.add('hidden');
+            overlayRef.current.classList.remove('open');
+            overlayRef.current.classList.add('hidden');
+        }
     };
+
+    
+
+    
 
     return (
         <div className="navbar">
             {/* Overlay para fechar o menu ao clicar fora */}
-            {isNavbarOpen && (
-                <div
-                    className={`sidebar-overlay ${isNavbarOpen ? 'open' : ''}`}
-                    onClick={closeSidebar}
-                />
-            )}
-
+            <div
+                className={`sidebar-overlay hidden`} // A classe 'hidden' mantém invisível inicialmente
+                onClick={closeSidebar}
+            />
+            
             {/* Sidebar */}
-            <div className={`sidebar ${isNavbarOpen ? 'open' : 'hidden'}`}>
+            <div className="sidebar hidden"> {/* Inicialmente escondida */}
                 <button className="close-button" onClick={closeSidebar}>
                     <FiX />
                 </button>
