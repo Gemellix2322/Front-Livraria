@@ -3,47 +3,35 @@
 }
 
 /* Overlay que cobre a tela inteira */
+.sidebar {
+    position: fixed;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #142046;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
 .sidebar-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
     opacity: 0;
-    pointer-events: none; /* Inicialmente, não há interatividade */
-    transition: opacity 0.3s ease-in-out; /* Transição suave */
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
 }
 
-/* Quando a sidebar estiver aberta, o overlay se torna visível */
 .sidebar-overlay.open {
     opacity: 1;
-    pointer-events: auto; /* Permite interações */
-}
-
-/* Sidebar */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px; /* Começa fora da tela à esquerda */
-    width: 300px;
-    height: 100vh;
-    background-color: #142046;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    padding: 20px;
-    transition: transform 0.3s ease-in-out; /* Transição suave */
-}
-
-/* Quando a sidebar está aberta, ela se move para a direita */
-.sidebar.open {
-    transform: translateX(300px); /* A sidebar se move para a tela */
-}
-
-/* Quando a sidebar está fechada, ela sai da tela */
-.sidebar.hidden {
-    transform: translateX(-300px); /* A sidebar volta para fora */
+    visibility: visible;
 }
 
 /* Botão de fechar */

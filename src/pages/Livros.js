@@ -15,7 +15,6 @@ const Livros = ({ livro }) => {
             <h2>Livros Disponíveis</h2>
             <ul className="linha-livros">
                 {livro.map((l) => {
-                    console.log(l)
                     return(
                     <li key={l.id}>
                         <Link to={`/livrodetails/${l.name}`}>
