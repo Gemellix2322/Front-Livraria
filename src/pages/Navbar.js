@@ -5,6 +5,7 @@ import { useRef, useEffect} from 'react';
 const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen}) => {
     useEffect(() => {
         if (isNavbarOpen) {
+            console.log("Funciona")
             openSidebar();
         } else {
             closeSidebar();
@@ -26,6 +27,7 @@ const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen}) => {
     };
 
     const openSidebar = () => {
+        console.log("Abriu")
         // Acessa a referência da sidebar e do overlay para manipular as classes
         if (sidebarRef.current && overlayRef.current) {
             sidebarRef.current.classList.remove('hidden');
