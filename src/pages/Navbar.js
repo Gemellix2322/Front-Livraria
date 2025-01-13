@@ -1,23 +1,18 @@
 import { FiX, FiUser, FiSettings, FiLogOut } from 'react-icons/fi';
 import '../css/Navbar.css';
-import { useRef, useEffect} from 'react';
+import { useRef, useEffect } from 'react';
 
-const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen}) => {
-    useEffect(() => {
-        if (isNavbarOpen) {
-            console.log("Funciona")
-            openSidebar();
-        } else {
-            closeSidebar();
-        }
-    }, [isNavbarOpen]);
+const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen }) => {
 
+    // Referências para a sidebar e o overlay
     const sidebarRef = useRef(null);
     const overlayRef = useRef(null);
 
     const closeSidebar = () => {
-        isNavbarOpen(false)
-        // Acessa a referência da sidebar e do overlay para manipular as classes
+        setIsNavbarOpen(false); // Usar a função para alterar o estado
+        console.log("Fechou");
+
+        // Manipulação das classes da sidebar e do overlay
         if (sidebarRef.current && overlayRef.current) {
             sidebarRef.current.classList.remove('open');
             sidebarRef.current.classList.add('hidden');
@@ -27,8 +22,9 @@ const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen}) => {
     };
 
     const openSidebar = () => {
-        console.log("Abriu")
-        // Acessa a referência da sidebar e do overlay para manipular as classes
+        console.log("Abriu");
+
+        // Manipulação das classes da sidebar e do overlay
         if (sidebarRef.current && overlayRef.current) {
             sidebarRef.current.classList.remove('hidden');
             sidebarRef.current.classList.add('open');
@@ -37,18 +33,26 @@ const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen}) => {
         }
     };
 
-    
+    // Usar useEffect para monitorar as mudanças no estado `isNavbarOpen`
+    useEffect(() => {
+        if (isNavbarOpen) {
+            openSidebar(); // Abre a sidebar quando isNavbarOpen é true
+        } else {
+            closeSidebar(); // Fecha a sidebar quando isNavbarOpen é false
+        }
+    }, [isNavbarOpen]); // Executa sempre que o estado isNavbarOpen mudar
 
     return (
         <div className="navbar">
             {/* Overlay para fechar o menu ao clicar fora */}
             <div
-                className={`sidebar-overlay hidden`} // A classe 'hidden' mantém invisível inicialmente
+                ref={overlayRef}
+                className="sidebar-overlay hidden"
                 onClick={closeSidebar}
             />
             
             {/* Sidebar */}
-            <div className="sidebar hidden"> {/* Inicialmente escondida */}
+            <div ref={sidebarRef} className="sidebar hidden">
                 <button className="close-button" onClick={closeSidebar}>
                     <FiX />
                 </button>
