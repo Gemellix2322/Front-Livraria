@@ -3,10 +3,20 @@ import { Link } from 'react-router-dom';
 import Logo from '../img/Logo.png'
 import Comentarios from './Comentarios';
 import { FiArrowLeft } from "react-icons/fi";
+import { useState } from 'react';
 
 
 function LivroDetails({ users, livros }) {
   const { name } = useParams();
+
+  const currentUser = users[0];
+  
+      const [formData, setFormData] = useState({
+          name: currentUser.name,
+          user: currentUser.username,
+          password: currentUser.password,
+          profile_picture: currentUser.profile_picture,
+      });
 
   
   
@@ -23,7 +33,7 @@ function LivroDetails({ users, livros }) {
     <div className="Livro-Details">
             <header className="App-header-menu">
                 <Link to={'/profile'}>
-                    <img className="profile_picture_menu" style={{backgroundImage: `url(https://imgur.com/66mqgNZ.png)`}}/>
+                    <img className="profile_picture_menu" src={formData.profile_picture}/>
                 </Link>
                 <Link to={'https://www.instagram.com/gemellicafes/'}>
                     <img src={Logo} alt="Logo" className="Logo"/>

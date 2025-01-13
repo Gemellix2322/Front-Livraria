@@ -36,7 +36,7 @@ const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen }) => {
                         <Link to='/profile'>
                             <img src={formData.profile_picture} className='navbar-profile'/>
                         </Link>
-                        <h3>{formData?.username || 'Usuário'}</h3>
+                        <h3>{formData?.user || 'Usuário'}</h3>
                     </div>
                 </div>
 

@@ -14,11 +14,22 @@ import Navbar from "./Navbar.js";
 
 
 const Menu = ({ users }) => {
+
+    const currentUser = users[0];
+
+    const [formData, setFormData] = useState({
+        name: currentUser.name,
+        user: currentUser.username,
+        password: currentUser.password,
+        profile_picture: currentUser.profile_picture,
+    });
     
     const [livro, setLivros] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+    
 
     useEffect(() => {
         notify('Logado com sucesso', 'success', 900);
@@ -44,11 +55,11 @@ const Menu = ({ users }) => {
         <div className="Menu">
             <header className="App-header-menu">
                 <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{cursor: 'pointer'}}>
-                    <img className="profile_picture_menu" style={{backgroundImage: `url(${livro.cover_image})`}}/>
+                    <img className="profile_picture_menu" src={formData.profile_picture} />
                 </a>
                 {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/> : null}
                 <img src={Logo} alt="Logo" className="Logo"/>
-                <h1>{users?.username ? `Bem-vindo ${users.username}` : 'Bem-vindo'}</h1>
+                <h1>{formData?.name ? `Bem-vindo ${formData.name}` : 'Bem-vindo'}</h1>
             </header>
             <div className="App-container">
                 <h1>Livros Disponíveis</h1>
