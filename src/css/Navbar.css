@@ -3,35 +3,43 @@
 }
 
 /* Overlay que cobre a tela inteira */
-.sidebar {
-    position: fixed;
-    top: 0;
-    width: 300px;
-    height: 100vh;
-    background-color: #142046;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-}
-
-.sidebar.open {
-    transform: translateX(0);
-}
-
 .sidebar-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.3s ease-in-out;
 }
 
 .sidebar-overlay.open {
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: #142046;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.open {
+    transform: translateX(300px);
+}
+
+.sidebar.hidden {
+    transform: translateX(0);
 }
 
 /* Botão de fechar */

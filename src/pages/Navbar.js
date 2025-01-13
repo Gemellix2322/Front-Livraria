@@ -1,5 +1,6 @@
 import { FiX, FiUser, FiSettings, FiLogOut } from 'react-icons/fi';
 import '../css/Navbar.css'
+import { useEffect } from 'react';
 
 const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen }) => {
     const handleClose = () => {
