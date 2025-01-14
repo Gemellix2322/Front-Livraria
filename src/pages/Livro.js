@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/Menu.css";
+import { Link } from "react-router-dom";
 
 const Livro = ({ livro }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -22,7 +23,9 @@ const Livro = ({ livro }) => {
           <p>{livro.name || 'Sem título'}</p>
           <p>{livro.description?.length > 25 ? livro.description.slice(0, 45) + '...' : livro.description}</p>
           <div className="icon-genero">
+            <Link to={`/genre/${livro.genre}`}>
             <p>{livro.genre || 'Sem Gênero'}</p>
+            </Link>
           </div>          
         </div>
       )}

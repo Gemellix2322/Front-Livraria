@@ -6,7 +6,7 @@
 }
 
 .App-header-menu {
-  background-color: #142046;
+  background: linear-gradient(89deg, #142046 13%, #1a295b 86%);
   padding: 2rem 0;
   display: flex;
   height: 200px;
