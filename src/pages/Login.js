@@ -17,7 +17,7 @@ const Login = ({ users }) => {
         console.log('Usuários disponíveis:', users);
         
         return users.some((u) => {
-            const isMatch = (u.username || u.username) === inputUser && u.password === inputPassword;
+            const isMatch = u.username === inputUser && u.password === inputPassword;
             console.log('Comparando com:', u, 'Resultado:', isMatch);
             return isMatch;
         });
@@ -43,8 +43,8 @@ const Login = ({ users }) => {
 
         if (isValidUser) {
             // Guarda o usuário atual no localStorage
-            const currentUser = users.find(u => (u.username || u.username) === username);
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            const currentUser = users.find(u => u.username === username);
+            localStorage.setItem('currentUserId', currentUser.id);
             navigate("/menu");
         } else {
             notify('Credenciais inválidas', 'error')

@@ -15,7 +15,9 @@ import Navbar from "./Navbar.js";
 
 const Menu = ({ users }) => {
 
-    const currentUser = users[0];
+    const userId = localStorage.getItem('currentUserId');
+
+    const currentUser = users.find(user => user.id === parseInt(userId));
 
     const [formData, setFormData] = useState({
         name: currentUser.name,

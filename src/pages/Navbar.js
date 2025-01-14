@@ -9,7 +9,9 @@ const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen }) => {
         setIsNavbarOpen(false);
     };
 
-    const currentUser = user[0];
+    const userId = localStorage.getItem('currentUserId');
+
+    const currentUser = user.find(user => user.id === parseInt(userId));
         
         const [formData, setFormData] = useState({
             name: currentUser.username,
