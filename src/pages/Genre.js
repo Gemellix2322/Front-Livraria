@@ -39,8 +39,7 @@ const Genre = ({ livro }) => {
                 <div className="lista-livros">
                     <h2>Outros Gêneros</h2>
                     <ul className="linha-livros">
-                        {randomGenre &&
-                            livro.filter((l) => l.genre === randomGenre).map((l) => (
+                        {livro.filter((l) => l.genre === randomGenre).map((l) => (
                                     <li key={l.id}>
                                         <Livro livro={l} />
                                     </li>

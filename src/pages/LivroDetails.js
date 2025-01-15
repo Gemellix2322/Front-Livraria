@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Logo from '../img/Logo.png'
-import Comentarios from './Comentarios';
+import Logo from '../img/Login-Logo.png'
 import { FiArrowLeft } from "react-icons/fi";
 import { useState } from 'react';
+import PageComentarios from './PageComentarios';
+import NewComment from './NewComment';
 
 
 function LivroDetails({ users, livros }) {
@@ -53,8 +54,11 @@ function LivroDetails({ users, livros }) {
                     <p className='Descricao'>{livro.description}</p>
                 </div>
             </div>
-            <div className='Comentarios'>
-                <Comentarios/>
+            <div className='New-Comentários'>
+                <NewComment/>
+            </div>
+            <div className='Comentários'>
+                    <PageComentarios/>
             </div>
         </div>
   );
