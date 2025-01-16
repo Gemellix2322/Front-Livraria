@@ -8,18 +8,18 @@ import NewComment from './NewComment';
 
 
 function LivroDetails({ users, livros }) {
-  const { name } = useParams();
+    const { name } = useParams();
 
-  const currentUser = users[0];
-  
-      const [formData, setFormData] = useState({
-          name: currentUser.name,
-          user: currentUser.username,
-          password: currentUser.password,
-          profile_picture: currentUser.profile_picture,
-      });
+    const userId = localStorage.getItem('currentUserId');
 
-  
+    const currentUser = users.find(user => user.id === parseInt(userId));
+
+    const [formData, setFormData] = useState({
+        name: currentUser.username,
+        user: currentUser.name,
+        password: currentUser.password,
+        profile_picture: currentUser.profile_picture,
+    });
   
   const livro = livros.find(l => l.name === name);
 
@@ -55,10 +55,10 @@ function LivroDetails({ users, livros }) {
                 </div>
             </div>
             <div className='New-Comentários'>
-                <NewComment/>
+                <NewComment user={users}/>
             </div>
             <div className='Comentários'>
-                    <PageComentarios/>
+                    <PageComentarios />
             </div>
         </div>
   );

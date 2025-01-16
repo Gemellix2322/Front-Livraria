@@ -265,10 +265,16 @@
   width: auto;
 }
 
+.Comentários {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.Comment {
+.comment {
   display: flex;
   width: auto;
+  min-width: 500px;
   align-items: center;
   justify-content: center;
   background-color: #1a1a1a;
