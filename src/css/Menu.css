@@ -319,3 +319,15 @@
 .comment-text {
   line-height: 1.5;
 }
+
+.button-heart {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+}
+
+.heart {
+  font-size: 25px;
+}
+

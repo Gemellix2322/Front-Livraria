@@ -3,7 +3,7 @@ import api from "../components/Api";
 import { useNavigate} from "react-router-dom";
 import { useState } from "react";
 
-const NewComment = ({user}) => {
+const NewComment = ({user, livro}) => {
     const [message, setMessage] = useState("");
     const userId = localStorage.getItem('currentUserId');
 
@@ -16,6 +16,7 @@ const NewComment = ({user}) => {
             const response = await api.post("/new-messages", {
                 message: message,
                 user: userId,
+                book: livro.id,
             });
     
             if (response.status === 200) {

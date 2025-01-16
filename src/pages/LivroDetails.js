@@ -5,6 +5,8 @@ import { FiArrowLeft } from "react-icons/fi";
 import { useState } from 'react';
 import PageComentarios from './PageComentarios';
 import NewComment from './NewComment';
+import api from '../components/Api';
+import { useEffect } from 'react';
 
 
 function LivroDetails({ users, livros }) {
@@ -20,6 +22,33 @@ function LivroDetails({ users, livros }) {
         password: currentUser.password,
         profile_picture: currentUser.profile_picture,
     });
+
+    const [user, setUsers] =useState([]);
+    const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Carregando as mensagens
+                const [messagesResponse, usersResponse] = await Promise.all([
+                    api.get('/messages'),
+                    api.get('/users')
+                ]);
+
+                setMessages(messagesResponse.data);
+                setUsers(usersResponse.data);
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                setError('Erro ao carregar dados.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
   
   const livro = livros.find(l => l.name === name);
 
@@ -29,6 +58,11 @@ function LivroDetails({ users, livros }) {
   }
 
   const capa = livro.cover_image;
+
+  const filteredMessages = messages.filter(message => {
+    return message.book && livro.id && message.book === livro.id;
+});
+
 
   return (
     <div className="Livro-Details">
@@ -55,10 +89,10 @@ function LivroDetails({ users, livros }) {
                 </div>
             </div>
             <div className='New-Comentários'>
-                <NewComment user={users}/>
+                <NewComment user={users} livro={livro}/>
             </div>
             <div className='Comentários'>
-                    <PageComentarios />
+                    <PageComentarios users={users} messages={filteredMessages} />
             </div>
         </div>
   );
