@@ -1,7 +1,7 @@
 import "../css/Menu.css";
 import LivrodoDia from "./LivrodoDia.js";
 import Logo from "../img/Login-Logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Livros from "./Livros.js";
 import { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
@@ -13,7 +13,9 @@ import Navbar from "./Navbar.js";
  
 
 
-const Menu = ({ users }) => {
+const Menu = ({ users, authenticated }) => {
+
+    const navigate = useNavigate()
 
     const userId = localStorage.getItem('currentUserId');
 
@@ -34,7 +36,12 @@ const Menu = ({ users }) => {
     
 
     useEffect(() => {
-        notify('Logado com sucesso', 'success', 900);
+        if(authenticated === false){
+            notify('Loge primeiro', 'warning')
+            navigate('/')
+        } else {
+            notify('Logado com sucesso', 'success', 900);
+        }
         console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/books`);
         api.get('/books')
             .then(response => {

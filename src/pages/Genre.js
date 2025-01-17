@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Livro from "./Livro";
 import "../css/Menu.css"
 import { BiColor } from "react-icons/bi";
 import { useEffect, useState } from "react";
+import notify from "../components/NewAlert";
 
-const Genre = ({ livro }) => {
+const Genre = ({ livro, authenticated }) => {
+    const navigate = useNavigate()
     const {genre} = useParams();
 
     const [randomGenre, setRandomGenre] = useState(null);
@@ -17,6 +19,10 @@ const Genre = ({ livro }) => {
     }
 
     useEffect(() => {
+        if(!authenticated){
+            notify('Loge primeiro', 'warning')
+            navigate('/')
+        }
         getRandomGenre();
     }, [livro]);
 

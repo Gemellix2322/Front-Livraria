@@ -6,7 +6,7 @@ import Logo from "../img/Login-Logo.png";
 import notify from "../components/NewAlert";
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ users }) => {
+const Login = ({ users, setAuthenticated, authenticated}) => {
     const navigate = useNavigate();
     const [username, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -25,6 +25,7 @@ const Login = ({ users }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setAuthenticated(true);
         
         // Validações básicas
         if (!username.trim() || !password.trim()) {
@@ -45,11 +46,30 @@ const Login = ({ users }) => {
             // Guarda o usuário atual no localStorage
             const currentUser = users.find(u => u.username === username);
             localStorage.setItem('currentUserId', currentUser.id);
+            console.log("Autenticação", setAuthenticated)
             navigate("/menu");
         } else {
             notify('Credenciais inválidas', 'error')
         }
     };
+
+    useEffect(() => {
+        const resetAuthenticated = () => {
+            if (authenticated) {
+                notify("Deslogado com sucesso", 'success')
+                setAuthenticated(false);
+            }
+        };
+    
+        // Adiciona um listener quando a aba é focada
+        window.addEventListener('focus', resetAuthenticated);
+    
+        // Limpa o listener ao desmontar
+        return () => {
+            window.removeEventListener('focus', resetAuthenticated);
+        };
+    }, [authenticated, setAuthenticated]);
+
 
     return (
         <div className="App">

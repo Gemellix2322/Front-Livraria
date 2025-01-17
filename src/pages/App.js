@@ -17,6 +17,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [livro, setLivros] = useState([]);
   const [error, setError] = useState(null);
+  const [authenticated, setAutheticated] = useState(false);
 
   useEffect(() => {
     console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/users`);
@@ -30,7 +31,6 @@ function App() {
         setLoading(false);
       });
 
-    notify('Logado com sucesso', 'success', 900);
     console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/books`);
     api.get('/books')
       .then(response => {
@@ -52,12 +52,12 @@ function App() {
     <div>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Login users={users} />} />
+        <Route path="/" element={<Login users={users} setAuthenticated={setAutheticated} authenticated={authenticated}/>} />
         <Route path="/cadastro" element={<Cadastro users={users} />} />
-        <Route path="/menu" element={<Menu users={users} />} />
-        <Route path="/profile" element={<Profile users={users} />} />
-        <Route path={`/livrodetails/:name`} element={<LivroDetails users={users} livros={livro} />} />
-        <Route path={`/genre/:genre`} element={<Genre genre={livro.genre} livro={livro}/>}/>
+        <Route path="/menu" element={<Menu users={users} authenticated={authenticated}/>} />
+        <Route path="/profile" element={<Profile users={users} authenticated={authenticated}/>} />
+        <Route path={`/livrodetails/:name`} element={<LivroDetails users={users} livros={livro} authenticated={authenticated}/>} />
+        <Route path={`/genre/:genre`} element={<Genre genre={livro.genre} livro={livro} authenticated={authenticated}/>}/>
       </Routes>
     </div>
   );

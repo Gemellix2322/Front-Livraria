@@ -1,10 +1,13 @@
 import { FiArrowLeft } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/Profile.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImageInput from "../components/ImageInput";
+import notify from "../components/NewAlert";
 
-const Profile = ({users}) => {
+const Profile = ({users, authenticated}) => {
+    const navigate = useNavigate()
+
     const userId = localStorage.getItem('currentUserId');
 
     const currentUser = users.find(user => user.id === parseInt(userId));
@@ -15,6 +18,13 @@ const Profile = ({users}) => {
         password: currentUser.password,
         profile_picture: currentUser.profile_picture,
     });
+
+    useEffect(() => {
+        if(!authenticated){
+            notify('Loge primeiro', 'warning')
+            navigate('/')
+        }
+    })
 
     const handleChange = (e) => {
         const { name, value } = e.target;

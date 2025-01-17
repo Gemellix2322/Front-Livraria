@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Logo from '../img/Login-Logo.png'
 import { FiArrowLeft } from "react-icons/fi";
@@ -7,9 +7,11 @@ import PageComentarios from './PageComentarios';
 import NewComment from './NewComment';
 import api from '../components/Api';
 import { useEffect } from 'react';
+import notify from '../components/NewAlert';
 
 
-function LivroDetails({ users, livros }) {
+function LivroDetails({ users, livros, authenticated }) {
+    const navigate = useNavigate()
     const { name } = useParams();
 
     const userId = localStorage.getItem('currentUserId');
@@ -29,6 +31,10 @@ function LivroDetails({ users, livros }) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        if(!authenticated){
+            notify('Loge primeiro', 'warning')
+            navigate('/')
+        }
         const fetchData = async () => {
             try {
                 // Carregando as mensagens
