@@ -43,7 +43,7 @@ function LivroDetails({ users, livros, authenticated }) {
                 // Carregando as mensagens
                 const [messagesResponse, usersResponse] = await Promise.all([
                     api.get('/messages'),
-                    api.get('/users')
+                    api.get('/get-users')
                 ]);
 
                 setMessages(messagesResponse.data);

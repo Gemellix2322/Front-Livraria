@@ -23,7 +23,7 @@ const Cadastro = ({users}) => {
     
         try {
             console.log('Iniciando requisição para:', api.defaults.baseURL);
-            const response = await api.post("/users", {
+            const response = await api.post("/post-users", {
                 username: username,
                 password: password,
             });

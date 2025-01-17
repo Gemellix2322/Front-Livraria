@@ -23,8 +23,8 @@ function App() {
     if(authenticated){
       setAutheticated(true);
     }
-    console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/users`);
-    api.get('/users')
+    console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/get-users`);
+    api.get('/get-users')
       .then(response => {
         setUsers(response.data);
         setLoading(false);
