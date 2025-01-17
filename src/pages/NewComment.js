@@ -8,8 +8,14 @@ const NewComment = ({user, livro}) => {
     const userId = localStorage.getItem('currentUserId');
 
     const navigate = useNavigate();
+
+    const handleRefresh = () => {
+        window.location.reload();
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(livro.id)
     
         try {
             console.log('Iniciando requisição para:', api.defaults.baseURL);
@@ -20,8 +26,12 @@ const NewComment = ({user, livro}) => {
             });
     
             if (response.status === 200) {
+
                 notify('Postado com sucesso', 'success');
-                setTimeout(() => navigate(`/genre/:genre`), 100); // Aguarda antes de redirecionar
+                setTimeout(() => {
+                    handleRefresh();
+                }, 500);
+                console.log("ID do Livro", livro.id)
             } else {
                 notify('Erro ao cadastrar mensagem', 'error');
             }

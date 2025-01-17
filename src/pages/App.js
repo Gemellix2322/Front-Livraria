@@ -17,9 +17,12 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [livro, setLivros] = useState([]);
   const [error, setError] = useState(null);
-  const [authenticated, setAutheticated] = useState(false);
+  const [authenticated, setAutheticated] = useState(true);
 
   useEffect(() => {
+    if(authenticated){
+      setAutheticated(true);
+    }
     console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/users`);
     api.get('/users')
       .then(response => {
