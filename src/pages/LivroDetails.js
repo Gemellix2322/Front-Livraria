@@ -8,6 +8,7 @@ import NewComment from './NewComment';
 import api from '../components/Api';
 import { useEffect } from 'react';
 import notify from '../components/NewAlert';
+import Navbar from './Navbar';
 
 
 function LivroDetails({ users, livros, authenticated }) {
@@ -29,6 +30,8 @@ function LivroDetails({ users, livros, authenticated }) {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
 
     useEffect(() => {
         if(!authenticated){
@@ -73,12 +76,11 @@ function LivroDetails({ users, livros, authenticated }) {
   return (
     <div className="Livro-Details">
             <header className="App-header-menu">
-                <Link to={'/profile'}>
-                    <img className="profile_picture_menu" src={formData.profile_picture}/>
-                </Link>
-                <Link to={'https://www.instagram.com/gemellicafes/'}>
+            <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{cursor: 'pointer'}}>
+                    <img className="profile_picture_menu" src={formData.profile_picture} />
+                </a>
+                {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/> : null}
                     <img src={Logo} alt="Logo" className="Logo"/>
-                </Link>
             </header>
             <div className="Livro-container">
                 <Link className="link-arrow-back" to={"/menu"}>

@@ -42,9 +42,7 @@ const Profile = ({users, authenticated}) => {
 
     return (
         <div className="Profile">
-            <Link className="link-arrow-back" to={"/menu"}>
-                <FiArrowLeft className="ArrowBack"/>
-            </Link>
+                <FiArrowLeft className="ArrowBack" onClick={() => navigate(-1)}/>
             <div className="picture">
                 <ImageInput
                     className="profile-picture-input"
