@@ -1,6 +1,5 @@
-import { FiX, FiUser, FiSettings, FiLogOut } from 'react-icons/fi';
-import '../css/Navbar.css'
-import { useState } from 'react';
+import { Close, Person, Settings, Logout } from '@mui/icons-material';
+import { Box, Drawer, IconButton, Typography, Avatar, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 import insta from "../img/instagram-logo.svg";
 
@@ -10,62 +9,137 @@ const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen }) => {
     };
 
     const userId = localStorage.getItem('currentUserId');
-
     const currentUser = user.find(user => user.id === parseInt(userId));
-        
-        const [formData, setFormData] = useState({
-            name: currentUser.username,
-            user: currentUser.name,
-            password: currentUser.password,
-            profile_picture: currentUser.profile_picture,
-        });
     
+    const formData = {
+        name: currentUser.username,
+        user: currentUser.name,
+        password: currentUser.password,
+        profile_picture: currentUser.profile_picture,
+    };
 
     return (
-        <div className="navbar">
-            <div 
-                className={`sidebar-overlay ${isNavbarOpen ? 'open' : ''}`}
+        <Drawer
+            anchor="left"
+            open={isNavbarOpen}
+            onClose={handleClose}
+            sx={{
+                '& .MuiDrawer-paper': {
+                width: 300,
+                background: 'linear-gradient(48deg, #121b3b 0%, #18254e 54%, #25366f 100%)',
+                padding: '20px',
+                color: 'white',
+                transitionDuration: '0.3s !important',
+                transitionTimingFunction: 'ease-in-out !important'
+                }
+            }}
+        >
+            <IconButton
                 onClick={handleClose}
-            />
-            
-            <div className={`sidebar ${isNavbarOpen ? 'open' : ''}`}>
-                <button className="close-button" onClick={handleClose}>
-                    <FiX />
-                </button>
+                sx={{
+                    position: 'absolute',
+                    right: 20,
+                    top: 20,
+                    color: 'white'
+                }}
+            >
+                <Close />
+            </IconButton>
 
-                <div className="sidebar-header">
-                    <div className="user-info">
-                        <Link to='/profile'>
-                            <img src={formData.profile_picture} className='navbar-profile'/>
-                        </Link>
-                        <h3>{formData?.user || 'Usuário'}</h3>
-                    </div>
-                </div>
+            <Stack
+                alignItems="center"
+                spacing={2}
+                sx={{ mt: 8 }}
+            >
+                <Link to='/profile'>
+                    <Avatar
+                        src={formData.profile_picture}
+                        sx={{ width: 100, height: 100 }}
+                    />
+                </Link>
+                <Typography variant="h6">{formData?.user || 'Usuário'}</Typography>
+            </Stack>
 
-                <div className="sidebar-content">
-                    <ul>
-                        <Link to='/profile' className='link-icons'>
-                            <li className='sidebar-icons'><FiUser /> Perfil</li>
-                        </Link>
-                        <Link to='/settings' className='link-icons'>
-                            <li className='sidebar-icons'><FiSettings /> Configurações</li>
-                        </Link>
-                        <Link to='/' className='link-icons'>
-                            <li className='sidebar-icons'><FiLogOut /> Sair</li>
-                        </Link>
-                    </ul>
+            <List sx={{ mt: 5 }}>
+                <ListItem
+                    component={Link}
+                    to="/profile"
+                    sx={{
+                        color: 'white',
+                        '&:hover': {
+                            bgcolor: '#f5f5f5',
+                            color: 'black',
+                            borderRadius: '10px'
+                        }
+                    }}
+                >
+                    <ListItemIcon sx={{ color: 'inherit' }}>
+                        <Person />
+                    </ListItemIcon>
+                    <ListItemText primary="Perfil" />
+                </ListItem>
+                
+                <ListItem
+                    component={Link}
+                    to="/settings"
+                    sx={{
+                        color: 'white',
+                        '&:hover': {
+                            bgcolor: '#f5f5f5',
+                            color: 'black',
+                            borderRadius: '10px'
+                        }
+                    }}
+                >
+                    <ListItemIcon sx={{ color: 'inherit' }}>
+                        <Settings />
+                    </ListItemIcon>
+                    <ListItemText primary="Configurações" />
+                </ListItem>
+                
+                <ListItem
+                    component={Link}
+                    to="/"
+                    sx={{
+                        color: 'white',
+                        '&:hover': {
+                            bgcolor: '#f5f5f5',
+                            color: 'black',
+                            borderRadius: '10px'
+                        }
+                    }}
+                >
+                    <ListItemIcon sx={{ color: 'inherit' }}>
+                        <Logout />
+                    </ListItemIcon>
+                    <ListItemText primary="Sair" />
+                </ListItem>
+            </List>
 
-                    <Link to='https://www.instagram.com/gemellicafes/' className='link-insta'>
-                        <div className='div-insta'>
-                            <img src={insta} className='insta-logo'/>
-                            <p>
-                                Instagram
-                            </p>
-                        </div>
-                    </Link>
-                </div>
-            </div>
-        </div>
+            <Box
+                component={Link}
+                to="https://www.instagram.com/gemellicafes/"
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: 'white',
+                    textDecoration: 'none',
+                    p: 2,
+                    '&:hover': {
+                        bgcolor: '#f5f5f5',
+                        color: 'black',
+                        borderRadius: '10px'
+                    }
+                }}
+            >
+                <Box
+                    component="img"
+                    src={insta}
+                    sx={{ width: 35, mr: 2 }}
+                />
+                <Typography>Instagram</Typography>
+            </Box>
+        </Drawer>
     );
 };
 

@@ -1,38 +1,34 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Logo from '../img/Login-Logo.png'
-import { FiArrowLeft } from "react-icons/fi";
-import { useState } from 'react';
+import { ArrowBack } from '@mui/icons-material';
+import { Box, Typography, AppBar, Toolbar, Container, Grid, IconButton, Avatar } from '@mui/material';
+import Logo from '../img/Login-Logo.png';
+import { useState, useEffect } from 'react';
 import PageComentarios from './PageComentarios';
 import NewComment from './NewComment';
 import api from '../components/Api';
-import { useEffect } from 'react';
 import notify from '../components/NewAlert';
 import Navbar from './Navbar';
 
-
 function LivroDetails({ users, livros, authenticated }) {
-    const navigate = useNavigate()
+    // Estados existentes permanecem iguais
+    const navigate = useNavigate();
     const { name } = useParams();
-
     const userId = localStorage.getItem('currentUserId');
-
     const currentUser = users.find(user => user.id === parseInt(userId));
-
     const [formData, setFormData] = useState({
         name: currentUser.username,
         user: currentUser.name,
         password: currentUser.password,
         profile_picture: currentUser.profile_picture,
     });
-
-    const [user, setUsers] =useState([]);
+    const [user, setUsers] = useState([]);
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
-
+    // useEffect permanece igual
     useEffect(() => {
         if(!authenticated){
             notify('Loge primeiro', 'warning')
@@ -40,12 +36,10 @@ function LivroDetails({ users, livros, authenticated }) {
         }
         const fetchData = async () => {
             try {
-                // Carregando as mensagens
                 const [messagesResponse, usersResponse] = await Promise.all([
                     api.get('/messages'),
                     api.get('/get-users')
                 ]);
-
                 setMessages(messagesResponse.data);
                 setUsers(usersResponse.data);
             } catch (error) {
@@ -55,55 +49,115 @@ function LivroDetails({ users, livros, authenticated }) {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, []);
-  
-  const livro = livros.find(l => l.name === name);
 
+    const livro = livros.find(l => l.name === name);
+    if (!livro) return <Typography>Livro não encontrado</Typography>;
+    
+    const filteredMessages = messages.filter(message => 
+        message.book && livro.id && message.book === livro.id
+    );
 
-  if (!livro) {
-    return <div>Livro não encontrado</div>;
-  }
+    return (
+        <Box sx={{
+            minHeight: '100vh',
+            bgcolor: '#1a1a1a',
+            color: '#ffffff'
+        }}>
+            <AppBar position="static" sx={{
+                background: 'linear-gradient(89deg, #142046 13%, #1a295b 86%)',
+                height: 200,
+            }}>
+                <Toolbar sx={{ 
+                    justifyContent: 'space-between',
+                    p: '0 2rem'
+                }}>
+                    <IconButton onClick={() => setIsNavbarOpen(!isNavbarOpen)}>
+                        <Avatar 
+                            src={formData.profile_picture}
+                            sx={{
+                                width: 70,
+                                height: 70,
+                                border: '2px solid #ddd'
+                            }}
+                        />
+                    </IconButton>
+                    {isNavbarOpen && <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/>}
+                    <Box component="img" 
+                        src={Logo} 
+                        alt="Logo"
+                        sx={{
+                            width: 50,
+                            ml: 'auto',
+                            mr: '15px'
+                        }}
+                    />
+                </Toolbar>
+            </AppBar>
 
-  const capa = livro.cover_image;
+            <Container>
+                <IconButton 
+                    component={Link} 
+                    to="/menu"
+                    sx={{
+                        position: 'absolute',
+                        top: '25%',
+                        left: '3%',
+                        color: 'white'
+                    }}
+                >
+                    <ArrowBack sx={{ width: 40, height: 'auto' }}/>
+                </IconButton>
 
-  const filteredMessages = messages.filter(message => {
-    return message.book && livro.id && message.book === livro.id;
-});
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={6} sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        <Box component="img"
+                            src={livro.cover_image}
+                            sx={{
+                                mt: '150px',
+                                width: 325,
+                                height: 500,
+                                borderRadius: '20px'
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} md={6} sx={{
+                        mt: '150px',
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}>
+                        <Typography variant="h1" sx={{ fontSize: 30 }}>
+                            {livro.name}
+                        </Typography>
+                        <Typography sx={{ fontSize: 20, maxWidth: 500 }}>
+                            {livro.description}
+                        </Typography>
+                    </Grid>
+                </Grid>
 
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: 'auto'
+                }}>
+                    <NewComment user={users} livro={livro}/>
+                </Box>
 
-  return (
-    <div className="Livro-Details">
-            <header className="App-header-menu">
-            <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{cursor: 'pointer'}}>
-                    <img className="profile_picture_menu" src={formData.profile_picture} />
-                </a>
-                {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/> : null}
-                    <img src={Logo} alt="Logo" className="Logo"/>
-            </header>
-            <div className="Livro-container">
-                <Link className="link-arrow-back" to={"/menu"}>
-                    <FiArrowLeft className="ArrowBack-profiledetails"/>
-                </Link>
-                <div className='livro-col1'>
-                    <div className='capa-livro'>
-                        <img src={capa} />
-                    </div>
-                </div>
-                <div className='livro-col2'>
-                    <h1 className='Titulo'>{livro.name}</h1>
-                    <p className='Descricao'>{livro.description}</p>
-                </div>
-            </div>
-            <div className='New-Comentários'>
-                <NewComment user={users} livro={livro}/>
-            </div>
-            <div className='Comentários'>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
                     <PageComentarios users={users} messages={filteredMessages} />
-            </div>
-        </div>
-  );
+                </Box>
+            </Container>
+        </Box>
+    );
 }
 
-export default LivroDetails
+export default LivroDetails;
