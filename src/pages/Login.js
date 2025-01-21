@@ -1,111 +1,124 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import "../css/App.css";
-import Logo from "../img/Login-Logo.png";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import { Box, TextField, Button, Typography, styled } from '@mui/material';
 import notify from "../components/NewAlert";
-import 'react-toastify/dist/ReactToastify.css';
+import api from "../components/Api";
+import Logo from "../img/Login-Logo.png";
+import { 
+    AuthContainer, 
+    ImageColumn, 
+    FormColumn, 
+    StyledTextField, 
+    StyledButton, 
+    StyledLink 
+  } from '../css/AuthStyle';
 
-const Login = ({ users, setAuthenticated, authenticated}) => {
-    const navigate = useNavigate();
-    const [username, setUser] = useState("");
-    const [password, setPassword] = useState("");
-    
-    // Função para debug
-    const checkUserCredentials = (inputUser, inputPassword) => {
-        console.log('Tentando login com:', { username: inputUser, password: inputPassword });
-        console.log('Usuários disponíveis:', users);
-        
-        return users.some((u) => {
-            const isMatch = u.username === inputUser && u.password === inputPassword;
-            console.log('Comparando com:', u, 'Resultado:', isMatch);
-            return isMatch;
-        });
+const Login = ({ users, setAuthenticated, authenticated }) => {
+  const navigate = useNavigate();
+  const [username, setUser] = useState("");
+  const [password, setPassword] = useState("");
+
+  const checkUserCredentials = (inputUser, inputPassword) => {
+    return users.some(u => u.username === inputUser && u.password === inputPassword);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setAuthenticated(true);
+
+    if (!username.trim() || !password.trim()) {
+      notify('Por favor, preencha todos os campos', 'warning');
+      return;
+    }
+
+    if (!Array.isArray(users)) {
+      notify('Erro ao verificar credenciais. Tente novamente.', 'error');
+      return;
+    }
+
+    if (checkUserCredentials(username, password)) {
+      const currentUser = users.find(u => u.username === username);
+      localStorage.setItem('currentUserId', currentUser.id);
+      navigate("/menu");
+    } else {
+      notify('Credenciais inválidas', 'error');
+    }
+  };
+
+  useEffect(() => {
+    const resetAuthenticated = () => {
+      if (authenticated) {
+        notify("Deslogado com sucesso", 'success');
+        setAuthenticated(false);
+      }
     };
+    window.addEventListener('focus', resetAuthenticated);
+    return () => window.removeEventListener('focus', resetAuthenticated);
+  }, [authenticated, setAuthenticated]);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setAuthenticated(true);
-        
-        // Validações básicas
-        if (!username.trim() || !password.trim()) {
-            notify('Por favor, preencha todos os campos', 'warning');
-            return;
-        }
-
-        // Verifica se users existe e é um array
-        if (!Array.isArray(users)) {
-            console.error('Users não é um array:', users);
-            notify('Erro ao verificar credenciais. Tente novamente.', 'error');
-            return;
-        }
-
-        const isValidUser = checkUserCredentials(username, password);
-
-        if (isValidUser) {
-            // Guarda o usuário atual no localStorage
-            const currentUser = users.find(u => u.username === username);
-            localStorage.setItem('currentUserId', currentUser.id);
-            console.log("Autenticação", setAuthenticated)
-            navigate("/menu");
-        } else {
-            notify('Credenciais inválidas', 'error')
-        }
-    };
-
-    useEffect(() => {
-        const resetAuthenticated = () => {
-            if (authenticated) {
-                notify("Deslogado com sucesso", 'success')
-                setAuthenticated(false);
-            }
-        };
-    
-        // Adiciona um listener quando a aba é focada
-        window.addEventListener('focus', resetAuthenticated);
-    
-        // Limpa o listener ao desmontar
-        return () => {
-            window.removeEventListener('focus', resetAuthenticated);
-        };
-    }, [authenticated, setAuthenticated]);
-
-
-    return (
-        <div className="App">
-            <div className="col-1">
-                <img src={Logo} className="Login-Logo" alt="Logo"/>
-                <h1 className="logo-name">Gemelli Cafés Especiais</h1>
-            </div>
-            <div className="col-2">
-                <div className="form-container">
-                    <div className="header">
-                        <h1>Livros de Prateleira</h1>
-                    </div>
-                    <form onSubmit={handleSubmit} className="formulario-login">
-                        <h1>Login</h1>
-                        <label>Usuário</label>
-                        <input 
-                            autoFocus 
-                            type="text" 
-                            value={username} 
-                            onChange={(e) => setUser(e.target.value)}
-                            required 
-                        />
-                        <label>Senha</label>
-                        <input 
-                            type="password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)}
-                            required 
-                        />
-                        <button type="submit">Entrar</button>
-                        <Link className="link" to="/cadastro">Não tenho Login</Link>
-                    </form>
-                </div>
-            </div>
-        </div>   
-    );
+  return (
+    <AuthContainer>
+      <ImageColumn>
+        <Box
+          component="img"
+          src={Logo}
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '250px',
+            height: 'auto'
+          }}
+          alt="Logo"
+        />
+        <Typography
+          variant="h3"
+          sx={{
+            color: 'white',
+            position: 'absolute',
+            top: '60%',
+            left: '34%',
+            fontSize: '45px'
+          }}
+        >
+          Gemelli Cafés Especiais
+        </Typography>
+      </ImageColumn>
+      <FormColumn>
+        <Box sx={{ width: '100%', maxWidth: 400 }}>
+          <Typography variant="h2" color="white" sx={{ mb: 12 }}>
+            Livros de Prateleira
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit}>
+            <Typography variant="h4" color="white" sx={{ mb: 2 }}>
+              Login
+            </Typography>
+            <StyledTextField
+              fullWidth
+              label="Usuário"
+              autoFocus
+              value={username}
+              onChange={(e) => setUser(e.target.value)}
+              required
+            />
+            <StyledTextField
+              fullWidth
+              label="Senha"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <StyledButton fullWidth type="submit" variant="contained">
+              Entrar
+            </StyledButton>
+            <StyledLink to="/cadastro">Não tenho Login</StyledLink>
+          </Box>
+        </Box>
+      </FormColumn>
+    </AuthContainer>
+  );
 };
 
 export default Login;

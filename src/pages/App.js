@@ -1,4 +1,3 @@
-import "../css/App.css"
 import {useNavigate, Route, Router, Routes} from "react-router-dom";
 import Login from "./Login.js";
 import Menu from "./Menu.js";

@@ -1,72 +1,118 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { 
+    PageContainer, 
+    ImageColumn, 
+    FormColumn, 
+    StyledTextField, 
+    StyledButton, 
+    StyledLink 
+  } from '../css/AuthStyle';
 import "../css/App.css";
 import Logo from "../img/Login-Logo.png"
 import notify from "../components/NewAlert";
 import 'react-toastify/dist/ReactToastify.css';
 import api from "../components/Api";
+import { Box, TextField, Button, Typography, Container, styled } from '@mui/material';
 
-const Cadastro = ({users}) => {
+const Cadastro = ({ users }) => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
-    const handleUsernameChange = (e) => setUsername(e.target.value);
-    const handlePasswordChange = (e) => setPassword(e.target.value);
-
-    console.log('Tentando fazer POST para:', `${api.defaults.baseURL}/users`);
-    console.log('Dados sendo enviados:', { username, password });
-
+  
     const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        try {
-            console.log('Iniciando requisição para:', api.defaults.baseURL);
-            const response = await api.post("/post-users", {
-                username: username,
-                password: password,
-            });
-    
-            if (response.status === 200) {
-                notify('Cadastrado com sucesso', 'success');
-                setTimeout(() => navigate("/"), 100); // Aguarda antes de redirecionar
-            } else {
-                notify('Erro ao cadastrar usuário', 'error');
-            }
-        } catch (error) {
-            console.error("Erro completo:", error);
-            console.error("URL da requisição:", error.config?.url);
-            console.error("Método da requisição:", error.config?.method);
-            notify('Erro ao cadastrar usuário', 'error');
+      e.preventDefault();
+  
+      try {
+        const response = await api.post("/post-users", {
+          username: username,
+          password: password,
+        });
+  
+        if (response.status === 200) {
+          notify('Cadastrado com sucesso', 'success');
+          setTimeout(() => navigate("/"), 100);
+        } else {
+          notify('Erro ao cadastrar usuário', 'error');
         }
+      } catch (error) {
+        console.error("Erro completo:", error);
+        notify('Erro ao cadastrar usuário', 'error');
+      }
     };
-
-    return(
-        <div className="App">
-            <div className="col-1">
-                <img src={Logo} className="Login-Logo" alt="Logo"/>
-                <h1 className="logo-name">Gemelli Cafés Especiais</h1>
-            </div>
-            <div className="col-2">
-                <div className="form-container">
-                    <div className="header">
-                        <h1>Livros de Prateleira</h1>
-                    </div>
-                <form onSubmit={handleSubmit} className="formulario-login">
-                    <h1>Cadastro</h1>
-                    <label>Usuário</label>
-                    <input id="user" autoFocus type="text" value={username} onChange={handleUsernameChange} />
-                    <label>Senha</label>
-                    <input id="password" type="password" value={password} onChange={handlePasswordChange} />
-                    <button type="submit">Cadastrar</button>
-                    <Link className="link" to="/">Já tenho Login</Link>
-                </form>
-                </div>
-            </div>
-        </div>   
-    )
-
-}
+  
+    return (
+      <PageContainer>
+        <ImageColumn>
+          <Box
+            component="img"
+            src={Logo}
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 250,
+              height: 'auto'
+            }}
+            alt="Logo"
+          />
+          <Typography
+            variant="h4"
+            sx={{
+              color: 'white',
+              fontSize: '45px',
+              position: 'absolute',
+              top: '60%',
+              left: '34%'
+            }}
+          >
+            Gemelli Cafés Especiais
+          </Typography>
+        </ImageColumn>
+  
+        <FormColumn>
+          <Container maxWidth="sm">
+            <Typography variant="h2" color="white" mb={12}>
+              Livros de Prateleira
+            </Typography>
+            
+            <Box component="form" onSubmit={handleSubmit}>
+              <Typography variant="h4" color="white" mb={2}>
+                Cadastro
+              </Typography>
+              
+              <StyledTextField
+                fullWidth
+                label="Usuário"
+                autoFocus
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              
+              <StyledTextField
+                fullWidth
+                label="Senha"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              
+              <StyledButton type="submit" fullWidth variant="contained">
+                Cadastrar
+              </StyledButton>
+              
+              <StyledLink to="/">
+                Já tenho Login
+              </StyledLink>
+            </Box>
+          </Container>
+        </FormColumn>
+      </PageContainer>
+    );
+  };
 
 export default Cadastro;
