@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { TiHeartOutline } from "react-icons/ti";
-import { TiHeartFullOutline } from "react-icons/ti";
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { Box, Typography, Avatar, IconButton, Card, CardHeader, CardContent } from '@mui/material';
 
 const Comentarios = ({ users, messages }) => {
     const userId = localStorage.getItem('currentUserId');
     const [like, setLike] = useState(false);
-
     const currentUser = users.find(user => user.id === parseInt(userId));
-    // Combina os dados de users e messages
+
     const commentList = messages.map((message) => {
         const user = users.find((user) => user.id === message.user);
-
         return {
             ...message,
             authorId: user?.id,
@@ -21,31 +18,50 @@ const Comentarios = ({ users, messages }) => {
     });
 
     if (!commentList.length) {
-        return <p>Sem comentários disponíveis.</p>;
+        return <Typography>Sem comentários disponíveis.</Typography>;
     }
 
-    const handleLike = () => {
-        setLike(prevLike => !prevLike);
-    };
-
     return (
-        <div>
+        <Box>
             {commentList.map((comment) => (
-                <div key={comment.id} className="comment">
-                    <div className="comment-avatar">
-                        <img src={comment.avatar} alt={`Avatar de ${comment.author}`} />
-                    </div>
-                    <div className="comment-content">
-                        <div className="comment-header">
-                            <span className="comment-author">{comment.author}</span>
-                            {currentUser.id === comment.authorId ? <button className="button-heart" onClick={handleLike}>{like === true ? <TiHeartFullOutline className="heart" color="#e0245e"/> : <TiHeartOutline className="heart"/>}</button> : null}
-                            <span className="comment-date">Data</span>
-                        </div>
-                        <div className="comment-text">{comment.message}</div>
-                    </div>
-                </div>
+                <Card key={comment.id} sx={{
+                    display: 'flex',
+                    minWidth: 500,
+                    bgcolor: '#1a1a1a',
+                    border: '1px solid #585858',
+                    p: 2,
+                    my: 2,
+                    maxWidth: 600,
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                    color: 'white'
+                }}>
+                    <Avatar
+                        src={comment.avatar}
+                        alt={`Avatar de ${comment.author}`}
+                        sx={{ width: 50, height: 50, mr: 2 }}
+                    />
+                    <Box sx={{ flexGrow: 1 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                            <Typography sx={{ fontWeight: 'bold' }}>
+                                {comment.author}
+                            </Typography>
+                            {currentUser.id === comment.authorId && (
+                                <IconButton
+                                    onClick={() => setLike(!like)}
+                                    sx={{ color: like ? '#e0245e' : 'white' }}
+                                >
+                                    {like ? <Favorite /> : <FavoriteBorder />}
+                                </IconButton>
+                            )}
+                            <Typography variant="body2" sx={{ color: '#999999' }}>
+                                Data
+                            </Typography>
+                        </Box>
+                        <Typography>{comment.message}</Typography>
+                    </Box>
+                </Card>
             ))}
-        </div>
+        </Box>
     );
 };
 
