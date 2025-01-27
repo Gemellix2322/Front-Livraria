@@ -105,7 +105,7 @@ const Profile = ({ users, authenticated }) => {
             <ImageInput
               name="avatar"
               maxHeight={200}
-              defaultImg={formData.profile_picture}
+              defaultImg={currentUser.profile_picture}
             />
           </StyledImageInput>
         </Box>

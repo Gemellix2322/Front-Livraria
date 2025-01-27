@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Livros from "./Livros.js";
 import { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
-import api from "../components/Api.js";
+import {api, apicsharp} from "../components/Api.js";
 import { ToastContainer } from "react-toastify";
 import notify from "../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,7 +43,8 @@ const Menu = ({ users, authenticated }) => {
             notify('Logado com sucesso', 'success', 900);
         }
         console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/books`);
-        api.get('/books')
+        //Nova api em C#
+        apicsharp.get('/api/Livros')
             .then(response => {
                 setLivros(response.data);
                 setLoading(false);
