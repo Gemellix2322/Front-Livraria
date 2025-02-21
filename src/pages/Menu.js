@@ -1,16 +1,16 @@
 import "../css/Menu.css";
 import LivrodoDia from "./LivrodoDia.js";
 import Logo from "../img/Login-Logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Livros from "./Livros.js";
 import { useEffect, useState } from "react";
-import { FiUser } from "react-icons/fi";
-import {api, apicsharp} from "../components/Api.js";
-import { ToastContainer } from "react-toastify";
+import {apicsharp} from "../components/Api.js";
 import notify from "../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "./Navbar.js";
- 
+import { Button } from "@mui/material";
+ import { Link } from "react-router-dom";
+import AddLivro from "./AddLivro.js";
 
 
 const Menu = ({ users, authenticated }) => {
@@ -26,6 +26,7 @@ const Menu = ({ users, authenticated }) => {
         user: currentUser.username,
         password: currentUser.password,
         profile_picture: currentUser.profile_picture,
+        admin: currentUser.admin,
     });
     
     const [livro, setLivros] = useState([]);
@@ -42,7 +43,7 @@ const Menu = ({ users, authenticated }) => {
         } else {
             notify('Logado com sucesso', 'success', 900);
         }
-        console.log('Fazendo requisição para:', `${process.env.REACT_APP_API_URL}/books`);
+        console.log('Fazendo requisição para:', `${process.env.CSHARP_API_URL}/books`);
         //Nova api em C#
         apicsharp.get('/api/Livros')
             .then(response => {
@@ -70,6 +71,7 @@ const Menu = ({ users, authenticated }) => {
                 {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/> : null}
                 <img src={Logo} alt="Logo" className="Logo"/>
                 <h1>{formData?.name ? `Bem-vindo ${formData.name}` : 'Bem-vindo'}</h1>
+                {currentUser.admin === 1 && <Link to={'/add'}><Button>Add Livro</Button></Link>}
             </header>
             <div className="App-container">
                 <h1>Livros Disponíveis</h1>

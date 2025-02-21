@@ -10,6 +10,7 @@ import LivroDetails from "./LivroDetails.js";
 import notify from "../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
 import Genre from "./Genre.js";
+import AddLivro from "./AddLivro.js";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -60,6 +61,7 @@ function App() {
         <Route path="/profile" element={<Profile users={users} authenticated={authenticated}/>} />
         <Route path={`/livrodetails/:name`} element={<LivroDetails users={users} livros={livro} authenticated={authenticated}/>} />
         <Route path={`/genre/:genre`} element={<Genre genre={livro.genre} livro={livro} authenticated={authenticated}/>}/>
+        <Route path={"/add"} element={<AddLivro users={users} authenticated={authenticated}/>}></Route>
       </Routes>
     </div>
   );
