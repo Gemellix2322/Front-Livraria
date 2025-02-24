@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Livro from "./Livro";
+import Livro from "./Livro/Livro.js";
 import "../css/Menu.css"
 import { BiColor } from "react-icons/bi";
 import { useEffect, useState } from "react";

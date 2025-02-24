@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box, TextField, Button, Typography, styled } from '@mui/material';
 import notify from "../../components/NewAlert";
 import api from "../../components/Api";
-import Logo from "../img/Login-Logo.png";
+import Logo from "../../img/Login-Logo.png";
 import { 
     AuthContainer, 
     ImageColumn, 

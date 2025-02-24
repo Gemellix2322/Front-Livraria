@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Menu/Navbar";
-import Logo from "../img/Login-Logo.png";
+import Logo from "../../img/Login-Logo.png";
 import { Button } from "@mui/material";
 import notify from "../../components/NewAlert";
 

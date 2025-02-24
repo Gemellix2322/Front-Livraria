@@ -9,8 +9,8 @@ import {
     StyledButton, 
     StyledLink 
   } from '../../css/AuthStyle';
-import "../css/App.css";
-import Logo from "../img/Login-Logo.png"
+import "../../css/App.css";
+import Logo from "../../img/Login-Logo.png"
 import notify from "../../components/NewAlert";
 import 'react-toastify/dist/ReactToastify.css';
 import api from "../../components/Api";
