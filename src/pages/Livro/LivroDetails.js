@@ -4,11 +4,11 @@ import { ArrowBack } from '@mui/icons-material';
 import { Box, Typography, AppBar, Toolbar, Container, Grid, IconButton, Avatar } from '@mui/material';
 import Logo from '../img/Login-Logo.png';
 import { useState, useEffect } from 'react';
-import PageComentarios from './PageComentarios';
-import NewComment from './NewComment';
-import api from '../components/Api';
-import notify from '../components/NewAlert';
-import Navbar from './Navbar';
+import PageComentarios from '../PageComentarios';
+import NewComment from '../NewComment';
+import api from '../../components/Api';
+import notify from '../../components/NewAlert';
+import Navbar from '../Menu/Navbar';
 
 function LivroDetails({ users, livros, authenticated }) {
     // Estados existentes permanecem iguais

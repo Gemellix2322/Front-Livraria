@@ -8,12 +8,12 @@ import {
     StyledTextField, 
     StyledButton, 
     StyledLink 
-  } from '../css/AuthStyle';
+  } from '../../css/AuthStyle';
 import "../css/App.css";
 import Logo from "../img/Login-Logo.png"
-import notify from "../components/NewAlert";
+import notify from "../../components/NewAlert";
 import 'react-toastify/dist/ReactToastify.css';
-import api from "../components/Api";
+import api from "../../components/Api";
 import { Box, TextField, Button, Typography, Container, styled } from '@mui/material';
 
 const Cadastro = ({ users }) => {

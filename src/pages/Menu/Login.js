@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { Box, TextField, Button, Typography, styled } from '@mui/material';
-import notify from "../components/NewAlert";
-import api from "../components/Api";
+import notify from "../../components/NewAlert";
+import api from "../../components/Api";
 import Logo from "../img/Login-Logo.png";
 import { 
     AuthContainer, 
@@ -11,7 +11,7 @@ import {
     StyledTextField, 
     StyledButton, 
     StyledLink 
-  } from '../css/AuthStyle';
+  } from '../../css/AuthStyle';
 
 const Login = ({ users, setAuthenticated, authenticated }) => {
   const navigate = useNavigate();

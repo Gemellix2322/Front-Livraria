@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Box, TextField, Button, IconButton, styled } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ImageInput from "../components/ImageInput";
-import notify from "../components/NewAlert";
-import api from "../components/Api";
+import ImageInput from "../../components/ImageInput";
+import notify from "../../components/NewAlert";
+import api from "../../components/Api";
 
 const StyledImageInput = styled(Box)({
   width: 200,

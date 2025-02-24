@@ -4,13 +4,13 @@ import Menu from "./Menu.js";
 import Cadastro from "./Cadastro.js";
 import Profile from "./Profile.js";
 import React, {useEffect, useState} from 'react';
-import api from "../components/Api.js";
+import api from "../../components/Api.js";
 import { ToastContainer } from "react-toastify";
-import LivroDetails from "./LivroDetails.js";
-import notify from "../components/NewAlert.js";
+import LivroDetails from "../Livro/LivroDetails.js";
+import notify from "../../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
-import Genre from "./Genre.js";
-import AddLivro from "./AddLivro.js";
+import Genre from "../Genre.js";
+import AddLivro from "../Livro/AddLivro.js";
 
 function App() {
   const [users, setUsers] = useState([]);
