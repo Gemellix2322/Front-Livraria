@@ -7,6 +7,21 @@ import { useState, useEffect } from 'react';
 import api from '../../components/Api';
 import notify from '../../components/NewAlert';
 import Navbar from '../Menu/Navbar';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
+
+const labels = {
+    0.5: '0.5',
+    1: '1',
+    1.5: '1.5',
+    2: '2',
+    2.5: '2.5',
+    3: '3',
+    3.5: '3.5',
+    4: '4',
+    4.5: '4.5',
+    5: '5',
+  };
 
 function LivroDetails({ users, livros, authenticated }) {
     const navigate = useNavigate();
@@ -24,6 +39,7 @@ function LivroDetails({ users, livros, authenticated }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+    const [value, setValue] = useState(labels)
 
     // useEffect permanece igual
     useEffect(() => {
@@ -134,6 +150,16 @@ function LivroDetails({ users, livros, authenticated }) {
                         <Typography sx={{ fontSize: 20, maxWidth: 500 }}>
                             {livro.description}
                         </Typography>
+                        <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
+                        <Typography>Rating</Typography>
+                        <Rating
+                            name="text-feedback"
+                            value={value}
+                            precision={0.5}
+                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                        />
+                        <Box sx={{ ml: 2 }}>{labels[value] || ''}</Box>
+                        </Box>
                     </Grid>
                 </Grid>
             </Container>

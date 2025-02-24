@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Livro from "./Livro.js";
-import "../css/Menu.css"
+import "../../css/Menu.css"
 
 const Livros = ({ livro }) => {
     const linkPath = '/livrodetails'

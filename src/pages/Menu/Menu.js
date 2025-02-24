@@ -2,7 +2,7 @@ import "../../css/Menu.css";
 import LivrodoDia from "../Livro/LivrodoDia.js";
 import Logo from "../../img/Login-Logo.png";
 import { useNavigate } from "react-router-dom";
-import Livros from "../Livro/Livro.js";
+import Livros from "../Livro/Livros.js";
 import { useEffect, useState } from "react";
 import {apicsharp} from "../../components/Api.js";
 import notify from "../../components/NewAlert.js";

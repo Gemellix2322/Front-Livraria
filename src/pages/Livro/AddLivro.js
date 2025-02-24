@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Menu/Navbar";
 import Logo from "../../img/Login-Logo.png";
-import { Button } from "@mui/material";
+import { Button, Input, Typography } from "@mui/material";
 import notify from "../../components/NewAlert";
+import { FormColumn } from "../../css/AuthStyle";
 
 const AddLivro = ({users, authenticated}) => {
     const navigate = useNavigate()
@@ -32,7 +33,7 @@ const AddLivro = ({users, authenticated}) => {
     })
 
     return (
-        <div className="AddLivro">
+        <div className="Menu">
              <header className="App-header-menu">
                 <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{cursor: 'pointer'}}>
                     <img className="profile_picture_menu" src={formData.profile_picture} />
@@ -42,10 +43,11 @@ const AddLivro = ({users, authenticated}) => {
                 <h1>{formData?.name ? `Bem-vindo ${formData.name}` : 'Bem-vindo'}</h1>
             </header>
             <div className="Container">
-                <form>
-
+                <Typography>Adicionar Novo Livro</Typography>
+                <FormColumn>
+                    <Input type="numeric"></Input>
                     <Button type="submit">Botão</Button>
-                </form>
+                </FormColumn>
             </div>
         </div>
     )
