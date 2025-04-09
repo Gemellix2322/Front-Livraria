@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Livro from "./Livro/Livro.js";
+import Livro from "./Livro/Livro.jsx";
 import "../css/Menu.css"
 import { BiColor } from "react-icons/bi";
 import { useEffect, useState } from "react";
-import notify from "../components/NewAlert";
+import notify from "../components/NewAlert.js";
 
 const Genre = ({ livro, authenticated }) => {
     const navigate = useNavigate()

@@ -1,16 +1,16 @@
 import "../../css/Menu.css";
-import LivrodoDia from "../Livro/LivrodoDia.js";
+import LivrodoDia from "../Livro/LivrodoDia.jsx";
 import Logo from "../../img/Login-Logo.png";
 import { useNavigate } from "react-router-dom";
-import Livros from "../Livro/Livros.js";
+import Livros from "../Livro/Livros.jsx";
 import { useEffect, useState } from "react";
 import {apicsharp} from "../../components/Api.js";
 import notify from "../../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from "./Navbar.js";
+import Navbar from "./Navbar.jsx";
 import { Button } from "@mui/material";
  import { Link } from "react-router-dom";
-import AddLivro from "../Livro/AddLivro.js";
+import AddLivro from "../Livro/AddLivro.jsx";
 
 
 const Menu = ({ users, authenticated }) => {

@@ -6,7 +6,7 @@ import { Button, Input, Typography } from "@mui/material";
 import notify from "../../components/NewAlert";
 import { FormColumn } from "../../css/AuthStyle";
 
-const AddLivro = ({users, authenticated}) => {
+const AddLivro = ({ users, authenticated }) => {
     const navigate = useNavigate()
 
     const userId = localStorage.getItem('currentUserId');
@@ -24,7 +24,7 @@ const AddLivro = ({users, authenticated}) => {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
     useEffect(() => {
-        if(authenticated === false){
+        if (authenticated === false) {
             notify('Loge primeiro', 'warning')
             navigate('/')
         } else {
@@ -34,13 +34,13 @@ const AddLivro = ({users, authenticated}) => {
 
     return (
         <div className="Menu">
-             <header className="App-header-menu">
-                <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{cursor: 'pointer'}}>
+            <header className="App-header-menu">
+                <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{ cursor: 'pointer' }}>
                     <img className="profile_picture_menu" src={formData.profile_picture} />
                 </a>
-                {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/> : null}
-                <img src={Logo} alt="Logo" className="Logo"/>
-                <h1>{formData?.name ? `Bem-vindo ${formData.name}` : 'Bem-vindo'}</h1>
+                {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen} /> : null}
+                <img src={Logo} alt="Logo" className="Logo" />
+                <h1>{`Bem-vindo`}</h1>
             </header>
             <div className="Container">
                 <Typography>Adicionar Novo Livro</Typography>

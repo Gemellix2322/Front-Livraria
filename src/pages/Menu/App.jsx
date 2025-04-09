@@ -1,16 +1,16 @@
 import {useNavigate, Route, Router, Routes} from "react-router-dom";
-import Login from "./Login.js";
-import Menu from "./Menu.js";
-import Cadastro from "./Cadastro.js";
-import Profile from "./Profile.js";
+import Login from "./Login.jsx";
+import Menu from "./Menu.jsx";
+import Cadastro from "./Cadastro.jsx";
+import Profile from "./Profile.jsx";
 import React, {useEffect, useState} from 'react';
 import api from "../../components/Api.js";
 import { ToastContainer } from "react-toastify";
-import LivroDetails from "../Livro/LivroDetails.js";
+import LivroDetails from "../Livro/LivroDetails.jsx";
 import notify from "../../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
-import Genre from "../Genre.js";
-import AddLivro from "../Livro/AddLivro.js";
+import Genre from "../Genre.jsx";
+import AddLivro from "../Livro/AddLivro.jsx";
 
 function App() {
   const [users, setUsers] = useState([]);
